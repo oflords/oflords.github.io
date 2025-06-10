@@ -206,6 +206,11 @@
             color: #fff;
         }
 
+        .hero-power {
+            background-color: #7a28c2;
+            color: #fff;
+        }
+
         .rng-container {
             text-align: center;
             margin-top: 10px;
@@ -381,7 +386,7 @@
                             <button class="counter-btn mana-btn" onclick="adjustCounter('p1Mana', 1)">+</button>
                         </div>
                     </div>
-                    <!-- Bottom Row: Armour and Fatigue -->
+                    <!-- Middle Row: Armour and Fatigue -->
                     <div class="counter-row">
                         <div class="counter-group">
                             <button class="counter-btn armour-btn" onclick="adjustCounter('p1Armour', -1)">−</button>
@@ -392,6 +397,12 @@
                             <button class="counter-btn fatigue-btn" onclick="adjustCounter('p1Fatigue', -1)">−</button>
                             <div class="counter fatigue" id="p1Fatigue">💀 0</div>
                             <button class="counter-btn fatigue-btn" onclick="adjustCounter('p1Fatigue', 1)">+</button>
+                        </div>
+                    </div>
+                    <!-- Bottom Row: Hero Power -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <div class="counter hero-power" onclick="heroPower('p1')">Hero Power</div>
                         </div>
                     </div>
                 </div>
@@ -412,7 +423,7 @@
                             <button class="counter-btn mana-btn" onclick="adjustCounter('p2Mana', 1)">+</button>
                         </div>
                     </div>
-                    <!-- Bottom Row: Armour and Fatigue -->
+                    <!-- Middle Row: Armour and Fatigue -->
                     <div class="counter-row">
                         <div class="counter-group">
                             <button class="counter-btn armour-btn" onclick="adjustCounter('p2Armour', -1)">−</button>
@@ -425,14 +436,17 @@
                             <button class="counter-btn fatigue-btn" onclick="adjustCounter('p2Fatigue', 1)">+</button>
                         </div>
                     </div>
+                    <!-- Bottom Row: Hero Power -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <div class="counter hero-power" onclick="heroPower('p2')">Hero Power</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="middle-button-container">
             <button id="turnBtn" class="center-button fade">End Turn</button>
-        </div>
-        <div class="middle-button-container" id="turnInfo">
-            <!-- Display coinflip result and turn info -->
         </div>
         <div class="rng-container">
             <input type="number" id="rngMax" placeholder="Max">
@@ -443,11 +457,9 @@
 
     <script>
         // Global game state
-        const state = {
-            player1: { name: null, health: 30, armour: 0, mana: 0, fatigue: 0 },
-            player2: { name: null, health: 30, armour: 0, mana: 0, fatigue: 0 },
-            currentTurn: null // 'player1' or 'player2'
-        };
+        var player1 = { name: null, class: null, health: 30, armour: 0, mana: 0, fatigue: 0 };
+        var player2 = { name: null, class: null, health: 30, armour: 0, mana: 0, fatigue: 0 };
+        var currentTurn = null; // 'player1' or 'player2'
 
         // Elements
         const mask = document.getElementById('mask');
@@ -460,7 +472,6 @@
         const gamePlayer1Name = document.getElementById('gamePlayer1Name');
         const gamePlayer2Name = document.getElementById('gamePlayer2Name');
         const turnBtn = document.getElementById('turnBtn');
-        const turnInfo = document.getElementById('turnInfo');
         const rngBtn = document.getElementById('rngBtn');
         const rngMax = document.getElementById('rngMax');
         const rngResult = document.getElementById('rngResult');
@@ -514,19 +525,22 @@
         // Start game button click
         startGameBtn.addEventListener('click', () => {
             // Set player names from selection
-            state.player1.name = "[P1] " + selection.player1;
-            state.player2.name = "[P2] " + selection.player2;
+            player1.name = "[P1] " + selection.player1;
+            player2.name = "[P2] " + selection.player2;
+
+            player1.class = selection.player1;
+            player2.class = selection.player2;
             
             // Show coin flip animation
             coinFlipOverlay.classList.add('active');
             
             // Decide who goes first with coinflip
             const firstPlayer = (Math.random() < 0.5) ? 'player1' : 'player2';
-            state.currentTurn = firstPlayer;
+            currentTurn = firstPlayer;
             
             // Show result after animation
             setTimeout(() => {
-                const winnerName = firstPlayer === 'player1' ? state.player1.name : state.player2.name;
+                const winnerName = firstPlayer === 'player1' ? player1.name : player2.name;
                 coinResult.textContent = `${winnerName} goes first!`;
             }, 2200);
             
@@ -540,57 +554,55 @@
                 }, 500);
                 
                 // Set up initial game state
-                turnInfo.textContent = `${state.currentTurn === 'player1' ? state.player1.name : state.player2.name} goes first!`;
-                if (state.currentTurn === 'player1') {
-                    state.player1.mana++;
-                    document.getElementById('p1Mana').textContent = `💎 ${state.player1.mana}`;
+                if (currentTurn === 'player1') {
+                    player1.mana++;
+                    document.getElementById('p1Mana').textContent = `💎 ${player1.mana}`;
                     gamePlayer1Name.classList.add("glow");
                 } else {
-                    state.player2.mana++;
-                    document.getElementById('p2Mana').textContent = `💎 ${state.player2.mana}`;
+                    player2.mana++;
+                    document.getElementById('p2Mana').textContent = `💎 ${player2.mana}`;
                     gamePlayer2Name.classList.add("glow");
                 }
                 
                 // Set names on game screen
-                gamePlayer1Name.textContent = state.player1.name;
-                gamePlayer2Name.textContent = state.player2.name;
+                gamePlayer1Name.textContent = player1.name;
+                gamePlayer2Name.textContent = player2.name;
                 
                 // Hide selection screen and show game screen
                 selectionScreen.classList.remove('active');
                 gameScreen.classList.add('active');
-                updateTextWithFade(`End ${state.currentTurn === 'player1' ? state.player1.name : state.player2.name}'s turn`, turnBtn);
+                updateTextWithFade(`End ${currentTurn === 'player1' ? player1.name : player2.name}'s turn`, turnBtn);
             }, 3500);
         });
 
         // End turn button click
         turnBtn.addEventListener('click', () => {
-            turnInfo.textContent = ``;
             // Switch turn and increment mana (max 10) for the new current turn
-            state.currentTurn = state.currentTurn === 'player1' ? 'player2' : 'player1';
-            if (state.currentTurn === 'player1') {
-                if (state.player1.mana < 10) state.player1.mana++;
-                document.getElementById('p1Mana').textContent = `💎 ${state.player1.mana}`;
+            currentTurn = currentTurn === 'player1' ? 'player2' : 'player1';
+            if (currentTurn === 'player1') {
+                if (player1.mana < 10) player1.mana++;
+                document.getElementById('p1Mana').textContent = `💎 ${player1.mana}`;
                 gamePlayer1Name.classList.add("glow");
                 gamePlayer2Name.classList.remove("glow");
             } else {
-                if (state.player2.mana < 10) state.player2.mana++;
-                document.getElementById('p2Mana').textContent = `💎 ${state.player2.mana}`;
+                if (player2.mana < 10) player2.mana++;
+                document.getElementById('p2Mana').textContent = `💎 ${player2.mana}`;
                 gamePlayer1Name.classList.remove("glow");
                 gamePlayer2Name.classList.add("glow");
             }
 
-            updateTextWithFade(`End ${state.currentTurn === 'player1' ? state.player1.name : state.player2.name}'s turn`, turnBtn);
+            updateTextWithFade(`End ${currentTurn === 'player1' ? player1.name : player2.name}'s turn`, turnBtn);
         });
 
         // Function to adjust counters (this was missing!)
         function adjustCounter(counterId, change) {
             // Determine which player and property based on counterId
-            let player, property, emoji;
+            let playerVar, property, emoji;
             
             if (counterId.includes('p1')) {
-                player = 'player1';
+                playerVar = player1;
             } else {
-                player = 'player2';
+                playerVar = player2;
             }
             
             if (counterId.includes('Health')) {
@@ -608,30 +620,31 @@
             }
             
             // Update the state
-            state[player][property] += change;
+            playerVar[property] += change;
             
             // Prevent negative values for most properties
-            if (property !== 'health' && state[player][property] < 0) {
-                state[player][property] = 0;
+            if (property !== 'health' && playerVar[property] < 0) {
+                playerVar[property] = 0;
             }
             
             // Cap mana at 10
-            if (property === 'mana' && state[player][property] > 10) {
-                state[player][property] = 10;
+            if (property === 'mana' && playerVar[property] > 10) {
+                playerVar[property] = 10;
             }
             
             // Update the display
-            document.getElementById(counterId).textContent = `${emoji} ${state[player][property]}`;
+            document.getElementById(counterId).textContent = `${emoji} ${playerVar[property]}`;
         }
 
         // Allow manual editing by clicking on counters
         function setupCounterEdit(counterId, playerKey, property) {
             const counterElem = document.getElementById(counterId);
+            const playerVar = playerKey == 'player1' ? player1 : player2;
             counterElem.addEventListener('click', () => {
-                const newVal = prompt(`Set new value for ${property} for ${state[playerKey].name}:`, state[playerKey][property]);
+                const newVal = prompt(`Set new value for ${property} for ${playerVar.name}:`, playerVar[property]);
                 const num = parseInt(newVal);
                 if (!isNaN(num)) {
-                    state[playerKey][property] = num;
+                    playerVar[property] = num;
                     let emoji = '';
                     if (property === 'health') emoji = '❤️';
                     else if (property === 'armour') emoji = '🛡️';
@@ -663,6 +676,45 @@
                 }, 1000);
             }
         });
+
+        function heroPower(playerKey) {
+            const playerVar = playerKey == 'p1' ? player1 : player2;
+            const opponentVar = playerKey == 'p2' ? player1 : player2;
+            const opponentKey = playerKey == 'p1' ? 'p2' : 'p1';
+
+            if (playerVar.mana < 2)
+                return;
+
+            switch (playerVar.class) {
+                case 'Mage':
+                    adjustCounter(opponentKey + "Health", -1);
+                    break;
+                case 'Warrior':
+                    adjustCounter(playerKey + "Armour", 2);
+                    break;
+                case 'Druid':
+                    adjustCounter(playerKey + "Armour", 1);
+                    adjustCounter(opponentKey + "Health", -1);
+                    break;
+                case 'Warlock':
+                    adjustCounter(playerKey + "Health", -2);
+                    break;
+                case 'Hunter':
+                    adjustCounter(opponentKey + "Health", -2);
+                    break;
+                case 'Priest':
+                    adjustCounter(playerKey + "Health", 2);
+                    break;
+                case 'Rogue':
+                case 'Paladin':
+                case 'Shaman':
+                    break;
+            }
+        }
+
+        function renderButtons() {
+
+        }
     </script>
 </body>
 
