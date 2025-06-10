@@ -107,14 +107,102 @@
 
         .game-info {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            gap: 15px;
             margin: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .counter-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .counter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
         }
 
         .counter {
-            font-size: 24px;
-            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 8px;
+            min-width: 60px;
+            text-align: center;
             user-select: none;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .counter-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .counter-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .counter-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Unique styles for each counter type */
+        .health {
+            background-color: #ac2326;
+            color: #fff;
+        }
+        
+        .health-btn {
+            background-color: #d63031;
+            color: #fff;
+        }
+        
+        .armour {
+            background-color: #6e6c6a;
+            color: #fff;
+        }
+        
+        .armour-btn {
+            background-color: #8e8b89;
+            color: #fff;
+        }
+        
+        .mana {
+            background-color: #3456ad;
+            color: #fff;
+        }
+        
+        .mana-btn {
+            background-color: #4a6cd6;
+            color: #fff;
+        }
+        
+        .fatigue {
+            background-color: #353331;
+            color: #fff;
+        }
+        
+        .fatigue-btn {
+            background-color: #454341;
+            color: #fff;
         }
 
         .rng-container {
@@ -135,8 +223,8 @@
         }
 
         .glow {
-            color: #fff; /* Text color */
-            text-shadow: 0 0 10px yellow; /* Horizontal offset, vertical offset, blur radius, and glow color */
+            color: #fff;
+            text-shadow: 0 0 10px yellow;
         }
     </style>
 </head>
@@ -192,17 +280,63 @@
             <div class="player" id="gamePlayer1">
                 <h2 id="gamePlayer1Name"></h2>
                 <div class="game-info">
-                    <div class="counter" id="p1Health">❤️ 30</div>
-                    <div class="counter" id="p1Mana">💎 0</div>
-                    <div class="counter" id="p1Fatigue">💀 0</div>
+                    <!-- Top Row: Health and Mana -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <button class="counter-btn health-btn" onclick="adjustCounter('p1Health', -1)">−</button>
+                            <div class="counter health" id="p1Health">❤️ 30</div>
+                            <button class="counter-btn health-btn" onclick="adjustCounter('p1Health', 1)">+</button>
+                        </div>
+                        <div class="counter-group">
+                            <button class="counter-btn mana-btn" onclick="adjustCounter('p1Mana', -1)">−</button>
+                            <div class="counter mana" id="p1Mana">💎 0</div>
+                            <button class="counter-btn mana-btn" onclick="adjustCounter('p1Mana', 1)">+</button>
+                        </div>
+                    </div>
+                    <!-- Bottom Row: Armour and Fatigue -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <button class="counter-btn armour-btn" onclick="adjustCounter('p1Armour', -1)">−</button>
+                            <div class="counter armour" id="p1Armour">🛡️ 0</div>
+                            <button class="counter-btn armour-btn" onclick="adjustCounter('p1Armour', 1)">+</button>
+                        </div>
+                        <div class="counter-group">
+                            <button class="counter-btn fatigue-btn" onclick="adjustCounter('p1Fatigue', -1)">−</button>
+                            <div class="counter fatigue" id="p1Fatigue">💀 0</div>
+                            <button class="counter-btn fatigue-btn" onclick="adjustCounter('p1Fatigue', 1)">+</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="player" id="gamePlayer2">
                 <h2 id="gamePlayer2Name"></h2>
                 <div class="game-info">
-                    <div class="counter" id="p2Health">❤️ 30</div>
-                    <div class="counter" id="p2Mana">💎 0</div>
-                    <div class="counter" id="p2Fatigue">💀 0</div>
+                    <!-- Top Row: Health and Mana -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <button class="counter-btn health-btn" onclick="adjustCounter('p2Health', -1)">−</button>
+                            <div class="counter health" id="p2Health">❤️ 30</div>
+                            <button class="counter-btn health-btn" onclick="adjustCounter('p2Health', 1)">+</button>
+                        </div>
+                        <div class="counter-group">
+                            <button class="counter-btn mana-btn" onclick="adjustCounter('p2Mana', -1)">−</button>
+                            <div class="counter mana" id="p2Mana">💎 0</div>
+                            <button class="counter-btn mana-btn" onclick="adjustCounter('p2Mana', 1)">+</button>
+                        </div>
+                    </div>
+                    <!-- Bottom Row: Armour and Fatigue -->
+                    <div class="counter-row">
+                        <div class="counter-group">
+                            <button class="counter-btn armour-btn" onclick="adjustCounter('p2Armour', -1)">−</button>
+                            <div class="counter armour" id="p2Armour">🛡️ 0</div>
+                            <button class="counter-btn armour-btn" onclick="adjustCounter('p2Armour', 1)">+</button>
+                        </div>
+                        <div class="counter-group">
+                            <button class="counter-btn fatigue-btn" onclick="adjustCounter('p2Fatigue', -1)">−</button>
+                            <div class="counter fatigue" id="p2Fatigue">💀 0</div>
+                            <button class="counter-btn fatigue-btn" onclick="adjustCounter('p2Fatigue', 1)">+</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,8 +356,8 @@
     <script>
         // Global game state
         const state = {
-            player1: { name: null, health: 30, mana: 0, fatigue: 0 },
-            player2: { name: null, health: 30, mana: 0, fatigue: 0 },
+            player1: { name: null, health: 30, armour: 0, mana: 0, fatigue: 0 },
+            player2: { name: null, health: 30, armour: 0, mana: 0, fatigue: 0 },
             currentTurn: null // 'player1' or 'player2'
         };
 
@@ -329,8 +463,51 @@
                 gamePlayer1Name.classList.remove("glow");
                 gamePlayer2Name.classList.add("glow");
             }
+
             updateTextWithFade(`End ${state.currentTurn === 'player1' ? state.player1.name : state.player2.name}'s turn`, turnBtn);
         });
+
+        // Function to adjust counters (this was missing!)
+        function adjustCounter(counterId, change) {
+            // Determine which player and property based on counterId
+            let player, property, emoji;
+            
+            if (counterId.includes('p1')) {
+                player = 'player1';
+            } else {
+                player = 'player2';
+            }
+            
+            if (counterId.includes('Health')) {
+                property = 'health';
+                emoji = '❤️';
+            } else if (counterId.includes('Armour')) {
+                property = 'armour';
+                emoji = '🛡️';
+            } else if (counterId.includes('Mana')) {
+                property = 'mana';
+                emoji = '💎';
+            } else if (counterId.includes('Fatigue')) {
+                property = 'fatigue';
+                emoji = '💀';
+            }
+            
+            // Update the state
+            state[player][property] += change;
+            
+            // Prevent negative values for most properties
+            if (property !== 'health' && state[player][property] < 0) {
+                state[player][property] = 0;
+            }
+            
+            // Cap mana at 10
+            if (property === 'mana' && state[player][property] > 10) {
+                state[player][property] = 10;
+            }
+            
+            // Update the display
+            document.getElementById(counterId).textContent = `${emoji} ${state[player][property]}`;
+        }
 
         // Allow manual editing by clicking on counters
         function setupCounterEdit(counterId, playerKey, property) {
@@ -342,6 +519,7 @@
                     state[playerKey][property] = num;
                     let emoji = '';
                     if (property === 'health') emoji = '❤️';
+                    else if (property === 'armour') emoji = '🛡️';
                     else if (property === 'mana') emoji = '💎';
                     else if (property === 'fatigue') emoji = '💀';
                     counterElem.textContent = `${emoji} ${num}`;
@@ -349,9 +527,11 @@
             });
         }
         setupCounterEdit('p1Health', 'player1', 'health');
+        setupCounterEdit('p1Armour', 'player1', 'armour');
         setupCounterEdit('p1Mana', 'player1', 'mana');
         setupCounterEdit('p1Fatigue', 'player1', 'fatigue');
         setupCounterEdit('p2Health', 'player2', 'health');
+        setupCounterEdit('p2Armour', 'player2', 'armour');
         setupCounterEdit('p2Mana', 'player2', 'mana');
         setupCounterEdit('p2Fatigue', 'player2', 'fatigue');
 
