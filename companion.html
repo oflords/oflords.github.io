@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hearthstone Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         body,
         html {
@@ -226,6 +227,85 @@
             color: #fff;
             text-shadow: 0 0 10px yellow;
         }
+
+        /* Coin flip animation styles */
+        .coin-flip-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .coin-flip-overlay.active {
+            display: flex;
+        }
+
+        .coin {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border: 4px solid #b8860b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b4513;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: coinFlip 2s ease-in-out;
+        }
+
+        .coin-result {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            opacity: 0;
+            animation: fadeInResult 0.5s ease-in-out 2.2s forwards;
+        }
+
+        @keyframes coinFlip {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            25% {
+                transform: rotateY(900deg) rotateX(180deg) scale(1.2);
+            }
+            50% {
+                transform: rotateY(1800deg) rotateX(360deg) scale(1.1);
+            }
+            75% {
+                transform: rotateY(2700deg) rotateX(540deg) scale(1.2);
+            }
+            100% {
+                transform: rotateY(3600deg) rotateX(720deg) scale(1);
+            }
+        }
+
+        @keyframes fadeInResult {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .coin-flip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -271,6 +351,14 @@
         </div>
         <div class="middle-button-container">
             <button id="startGameBtn" class="center-button disabled" disabled>Start Game</button>
+        </div>
+    </div>
+
+    <!-- Coin Flip Animation -->
+    <div id="coinFlipOverlay" class="coin-flip-overlay">
+        <div class="coin-flip-container">
+            <div class="coin" id="coin">•</div>
+            <div class="coin-result" id="coinResult"></div>
         </div>
     </div>
 
@@ -376,6 +464,8 @@
         const rngBtn = document.getElementById('rngBtn');
         const rngMax = document.getElementById('rngMax');
         const rngResult = document.getElementById('rngResult');
+        const coinFlipOverlay = document.getElementById('coinFlipOverlay');
+        const coinResult = document.getElementById('coinResult');
 
         let selection = { player1: null, player2: null };
 
@@ -426,25 +516,50 @@
             // Set player names from selection
             state.player1.name = "[P1] " + selection.player1;
             state.player2.name = "[P2] " + selection.player2;
+            
+            // Show coin flip animation
+            coinFlipOverlay.classList.add('active');
+            
             // Decide who goes first with coinflip
-            state.currentTurn = (Math.random() < 0.5) ? 'player1' : 'player2';
-            turnInfo.textContent = `${state.currentTurn === 'player1' ? state.player1.name : state.player2.name} goes first!`;
-            if (state.currentTurn === 'player1') {
-                state.player1.mana++;
-                document.getElementById('p1Mana').textContent = `💎 ${state.player1.mana}`;
-                gamePlayer1Name.classList.add("glow");
-            } else {
-                state.player2.mana++;
-                document.getElementById('p2Mana').textContent = `💎 ${state.player2.mana}`;
-                gamePlayer2Name.classList.add("glow");
-            }
-            // Set names on game screen
-            gamePlayer1Name.textContent = state.player1.name;
-            gamePlayer2Name.textContent = state.player2.name;
-            // Hide selection screen and show game screen
-            selectionScreen.classList.remove('active');
-            gameScreen.classList.add('active');
-            updateTextWithFade(`End ${state.currentTurn === 'player1' ? state.player1.name : state.player2.name}'s turn`, turnBtn);
+            const firstPlayer = (Math.random() < 0.5) ? 'player1' : 'player2';
+            state.currentTurn = firstPlayer;
+            
+            // Show result after animation
+            setTimeout(() => {
+                const winnerName = firstPlayer === 'player1' ? state.player1.name : state.player2.name;
+                coinResult.textContent = `${winnerName} goes first!`;
+            }, 2200);
+            
+            // Hide overlay and start game after full animation
+            setTimeout(() => {
+                coinFlipOverlay.classList.remove('active');
+                
+                // Reset coin result for next time
+                setTimeout(() => {
+                    coinResult.textContent = '';
+                }, 500);
+                
+                // Set up initial game state
+                turnInfo.textContent = `${state.currentTurn === 'player1' ? state.player1.name : state.player2.name} goes first!`;
+                if (state.currentTurn === 'player1') {
+                    state.player1.mana++;
+                    document.getElementById('p1Mana').textContent = `💎 ${state.player1.mana}`;
+                    gamePlayer1Name.classList.add("glow");
+                } else {
+                    state.player2.mana++;
+                    document.getElementById('p2Mana').textContent = `💎 ${state.player2.mana}`;
+                    gamePlayer2Name.classList.add("glow");
+                }
+                
+                // Set names on game screen
+                gamePlayer1Name.textContent = state.player1.name;
+                gamePlayer2Name.textContent = state.player2.name;
+                
+                // Hide selection screen and show game screen
+                selectionScreen.classList.remove('active');
+                gameScreen.classList.add('active');
+                updateTextWithFade(`End ${state.currentTurn === 'player1' ? state.player1.name : state.player2.name}'s turn`, turnBtn);
+            }, 3500);
         });
 
         // End turn button click
