@@ -22,7 +22,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #333 url('your-background-image.jpg') center/cover no-repeat;
+            background: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -164,49 +164,54 @@
         .counter-btn:active {
             transform: scale(0.95);
         }
-        
+
         /* Unique styles for each counter type */
         .health {
             background-color: #ac2326;
             color: #fff;
         }
-        
+
         .health-btn {
             background-color: #d63031;
             color: #fff;
         }
-        
+
         .armour {
             background-color: #6e6c6a;
             color: #fff;
         }
-        
+
         .armour-btn {
             background-color: #8e8b89;
             color: #fff;
         }
-        
+
         .mana {
             background-color: #3456ad;
             color: #fff;
         }
-        
+
         .mana-btn {
             background-color: #4a6cd6;
             color: #fff;
         }
-        
+
         .fatigue {
             background-color: #353331;
             color: #fff;
         }
-        
+
         .fatigue-btn {
             background-color: #454341;
             color: #fff;
         }
 
         .hero-power {
+            background-color: #964B00;
+            color: #fff;
+        }
+
+        .take-damage {
             background-color: #7a28c2;
             color: #fff;
         }
@@ -281,15 +286,19 @@
             0% {
                 transform: rotateY(0deg) rotateX(0deg);
             }
+
             25% {
                 transform: rotateY(900deg) rotateX(180deg) scale(1.2);
             }
+
             50% {
                 transform: rotateY(1800deg) rotateX(360deg) scale(1.1);
             }
+
             75% {
                 transform: rotateY(2700deg) rotateX(540deg) scale(1.2);
             }
+
             100% {
                 transform: rotateY(3600deg) rotateX(720deg) scale(1);
             }
@@ -300,6 +309,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -311,12 +321,22 @@
             flex-direction: column;
             align-items: center;
         }
+
+        .yellow-button {
+            background-color: #ffd700;
+            border: 4px solid #d3d3d3;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <!-- Mask and Setup Game Button -->
-    <div id="mask" class="mask">
+    <div id="mask" class="mask" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+        <h2>Physical Hearthstone Tracker</h2>
+        <h4><i>Landscape mode is suggested...</i></h4>
         <button id="setupBtn" class="center-button">Setup Game</button>
     </div>
 
@@ -403,6 +423,7 @@
                     <div class="counter-row">
                         <div class="counter-group">
                             <div class="counter hero-power" onclick="heroPower('p1')">Hero Power</div>
+                            <div class="counter take-damage" onclick="selectDamageAmount('p2')">Deal Damage</div>
                         </div>
                     </div>
                 </div>
@@ -440,13 +461,14 @@
                     <div class="counter-row">
                         <div class="counter-group">
                             <div class="counter hero-power" onclick="heroPower('p2')">Hero Power</div>
+                            <div class="counter take-damage" onclick="selectDamageAmount('p1')">Deal Damage</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="middle-button-container">
-            <button id="turnBtn" class="center-button fade">End Turn</button>
+            <button id="turnBtn" class="center-button yellow-button fade">End Turn</button>
         </div>
         <div class="rng-container">
             <input type="number" id="rngMax" placeholder="Max">
@@ -455,11 +477,42 @@
         </div>
     </div>
 
+    <!-- Damage Amount Modal -->
+    <div id="damageModal"
+        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:300; justify-content:center; align-items:center;">
+        <div
+            style="background:#222; padding:30px 20px 20px 20px; border-radius:12px; box-shadow:0 0 20px #000; min-width:240px; display:flex; flex-direction:column; align-items:center;">
+            <h3 id="damageModalTitle" style="margin-bottom:15px;">Deal Damage</h3>
+            <input id="damageInput" type="number" min="1"
+                style="font-size:20px; width:80px; text-align:center; margin-bottom:15px;" />
+            <div style="display:flex; gap:10px;">
+                <button id="damageOkBtn" class="center-button yellow-button">OK</button>
+                <button id="damageCancelBtn" class="center-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Counter Edit Modal -->
+    <div id="counterEditModal"
+        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:301; justify-content:center; align-items:center;">
+        <div
+            style="background:#222; padding:30px 20px 20px 20px; border-radius:12px; box-shadow:0 0 20px #000; min-width:240px; display:flex; flex-direction:column; align-items:center;">
+            <h3 id="counterEditModalTitle" style="margin-bottom:15px;">Edit Counter</h3>
+            <input id="counterEditInput" type="number" min="0"
+                style="font-size:20px; width:80px; text-align:center; margin-bottom:15px;" />
+            <div style="display:flex; gap:10px;">
+                <button id="counterEditOkBtn" class="center-button yellow-button">OK</button>
+                <button id="counterEditCancelBtn" class="center-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Global game state
         var player1 = { name: null, class: null, health: 30, armour: 0, mana: 0, fatigue: 0 };
         var player2 = { name: null, class: null, health: 30, armour: 0, mana: 0, fatigue: 0 };
         var currentTurn = null; // 'player1' or 'player2'
+        var heroPowerThisTurn = false;
 
         // Elements
         const mask = document.getElementById('mask');
@@ -477,6 +530,53 @@
         const rngResult = document.getElementById('rngResult');
         const coinFlipOverlay = document.getElementById('coinFlipOverlay');
         const coinResult = document.getElementById('coinResult');
+        // Modal elements
+        const damageModal = document.getElementById('damageModal');
+        const damageInput = document.getElementById('damageInput');
+        const damageOkBtn = document.getElementById('damageOkBtn');
+        const damageCancelBtn = document.getElementById('damageCancelBtn');
+        const damageModalTitle = document.getElementById('damageModalTitle');
+        // Counter Edit Modal elements
+        const counterEditModal = document.getElementById('counterEditModal');
+        const counterEditInput = document.getElementById('counterEditInput');
+        const counterEditOkBtn = document.getElementById('counterEditOkBtn');
+        const counterEditCancelBtn = document.getElementById('counterEditCancelBtn');
+        const counterEditModalTitle = document.getElementById('counterEditModalTitle');
+
+        let damageTargetPlayerKey = null;
+
+        // Redesigned selectDamageAmount
+        function selectDamageAmount(playerKey) {
+            damageTargetPlayerKey = playerKey;
+            const playerVar = playerKey == 'p1' ? player1 : player2;
+            damageModalTitle.textContent = `Deal Damage to ${playerVar.name}`;
+            damageInput.value = '';
+            damageModal.style.display = 'flex';
+            damageInput.focus();
+        }
+
+        // Modal OK button
+        damageOkBtn.onclick = function () {
+            const val = parseInt(damageInput.value, 10);
+            if (!isNaN(val) && val > 0) {
+                takeDamage(damageTargetPlayerKey, val);
+                damageModal.style.display = 'none';
+            } else {
+                damageInput.focus();
+                damageInput.select();
+            }
+        };
+
+        // Modal Cancel button
+        damageCancelBtn.onclick = function () {
+            damageModal.style.display = 'none';
+        };
+
+        // Optional: Close modal on Escape key
+        damageInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') damageOkBtn.click();
+            if (e.key === 'Escape') damageCancelBtn.click();
+        });
 
         let selection = { player1: null, player2: null };
 
@@ -530,29 +630,29 @@
 
             player1.class = selection.player1;
             player2.class = selection.player2;
-            
+
             // Show coin flip animation
             coinFlipOverlay.classList.add('active');
-            
+
             // Decide who goes first with coinflip
             const firstPlayer = (Math.random() < 0.5) ? 'player1' : 'player2';
             currentTurn = firstPlayer;
-            
+
             // Show result after animation
             setTimeout(() => {
                 const winnerName = firstPlayer === 'player1' ? player1.name : player2.name;
                 coinResult.textContent = `${winnerName} goes first!`;
             }, 2200);
-            
+
             // Hide overlay and start game after full animation
             setTimeout(() => {
                 coinFlipOverlay.classList.remove('active');
-                
+
                 // Reset coin result for next time
                 setTimeout(() => {
                     coinResult.textContent = '';
                 }, 500);
-                
+
                 // Set up initial game state
                 if (currentTurn === 'player1') {
                     player1.mana++;
@@ -563,11 +663,11 @@
                     document.getElementById('p2Mana').textContent = `💎 ${player2.mana}`;
                     gamePlayer2Name.classList.add("glow");
                 }
-                
+
                 // Set names on game screen
                 gamePlayer1Name.textContent = player1.name;
                 gamePlayer2Name.textContent = player2.name;
-                
+
                 // Hide selection screen and show game screen
                 selectionScreen.classList.remove('active');
                 gameScreen.classList.add('active');
@@ -592,19 +692,20 @@
             }
 
             updateTextWithFade(`End ${currentTurn === 'player1' ? player1.name : player2.name}'s turn`, turnBtn);
+            heroPowerThisTurn = false;
         });
 
         // Function to adjust counters (this was missing!)
         function adjustCounter(counterId, change) {
             // Determine which player and property based on counterId
             let playerVar, property, emoji;
-            
+
             if (counterId.includes('p1')) {
                 playerVar = player1;
             } else {
                 playerVar = player2;
             }
-            
+
             if (counterId.includes('Health')) {
                 property = 'health';
                 emoji = '❤️';
@@ -618,20 +719,25 @@
                 property = 'fatigue';
                 emoji = '💀';
             }
-            
+
             // Update the state
             playerVar[property] += change;
-            
+
             // Prevent negative values for most properties
             if (property !== 'health' && playerVar[property] < 0) {
                 playerVar[property] = 0;
             }
-            
+
             // Cap mana at 10
             if (property === 'mana' && playerVar[property] > 10) {
                 playerVar[property] = 10;
             }
-            
+
+            // Cap health at 30
+            if (property === 'health' && playerVar[property] > 30) {
+                playerVar[property] = 10;
+            }
+
             // Update the display
             document.getElementById(counterId).textContent = `${emoji} ${playerVar[property]}`;
         }
@@ -641,19 +747,39 @@
             const counterElem = document.getElementById(counterId);
             const playerVar = playerKey == 'player1' ? player1 : player2;
             counterElem.addEventListener('click', () => {
-                const newVal = prompt(`Set new value for ${property} for ${playerVar.name}:`, playerVar[property]);
-                const num = parseInt(newVal);
-                if (!isNaN(num)) {
-                    playerVar[property] = num;
-                    let emoji = '';
-                    if (property === 'health') emoji = '❤️';
-                    else if (property === 'armour') emoji = '🛡️';
-                    else if (property === 'mana') emoji = '💎';
-                    else if (property === 'fatigue') emoji = '💀';
-                    counterElem.textContent = `${emoji} ${num}`;
-                }
+                counterEditContext = { playerVar, property, counterElem };
+                counterEditModalTitle.textContent = `Set new value for ${property} for ${playerVar.name}:`;
+                counterEditInput.value = playerVar[property];
+                counterEditModal.style.display = 'flex';
+                counterEditInput.focus();
             });
         }
+
+        counterEditOkBtn.onclick = function () {
+            const num = parseInt(counterEditInput.value, 10);
+            if (!isNaN(num)) {
+                counterEditContext.playerVar[counterEditContext.property] = num;
+                let emoji = '';
+                if (counterEditContext.property === 'health') emoji = '❤️';
+                else if (counterEditContext.property === 'armour') emoji = '🛡️';
+                else if (counterEditContext.property === 'mana') emoji = '💎';
+                else if (counterEditContext.property === 'fatigue') emoji = '💀';
+                counterEditContext.counterElem.textContent = `${emoji} ${num}`;
+                counterEditModal.style.display = 'none';
+            } else {
+                counterEditInput.focus();
+                counterEditInput.select();
+            }
+        };
+
+        counterEditCancelBtn.onclick = function () {
+            counterEditModal.style.display = 'none';
+        };
+
+        counterEditInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') counterEditOkBtn.click();
+            if (e.key === 'Escape') counterEditCancelBtn.click();
+        });
         setupCounterEdit('p1Health', 'player1', 'health');
         setupCounterEdit('p1Armour', 'player1', 'armour');
         setupCounterEdit('p1Mana', 'player1', 'mana');
@@ -682,25 +808,34 @@
             const opponentVar = playerKey == 'p2' ? player1 : player2;
             const opponentKey = playerKey == 'p1' ? 'p2' : 'p1';
 
-            if (playerVar.mana < 2)
+            if (playerVar.mana < 2) {
+                alert('Not enough mana...');
                 return;
+            }
+
+            if (heroPowerThisTurn) {
+                alert('You have already used your hero power this turn...');
+                return;
+            }
+
+            heroPowerThisTurn = true;
 
             switch (playerVar.class) {
                 case 'Mage':
-                    adjustCounter(opponentKey + "Health", -1);
+                    takeDamage(opponentKey, 1);
                     break;
                 case 'Warrior':
                     adjustCounter(playerKey + "Armour", 2);
                     break;
                 case 'Druid':
                     adjustCounter(playerKey + "Armour", 1);
-                    adjustCounter(opponentKey + "Health", -1);
+                    takeDamage(opponentKey, 1);
                     break;
                 case 'Warlock':
-                    adjustCounter(playerKey + "Health", -2);
+                    takeDamage(playerKey, 2);
                     break;
                 case 'Hunter':
-                    adjustCounter(opponentKey + "Health", -2);
+                    takeDamage(opponentKey, 2);
                     break;
                 case 'Priest':
                     adjustCounter(playerKey + "Health", 2);
@@ -712,8 +847,21 @@
             }
         }
 
-        function renderButtons() {
-
+        function takeDamage(playerKey, damage) {
+            const playerVar = playerKey == 'p1' ? player1 : player2;
+            if (playerVar.armour - damage < 0) {
+                const remainingDamage = damage - playerVar.armour;
+                playerVar.armour = 0;
+                adjustCounter(playerKey + "Armour", 0);
+                playerVar.health -= remainingDamage;
+                if (playerVar.health < 0) {
+                    playerVar.health = 0; // Prevent negative health
+                }
+                adjustCounter(playerKey + "Health", 0);
+            } else {
+                playerVar.armour -= damage;
+                adjustCounter(playerKey + "Armour", 0);
+            }
         }
     </script>
 </body>
