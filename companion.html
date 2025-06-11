@@ -483,7 +483,7 @@
         <div
             style="background:#222; padding:30px 20px 20px 20px; border-radius:12px; box-shadow:0 0 20px #000; min-width:240px; display:flex; flex-direction:column; align-items:center;">
             <h3 id="damageModalTitle" style="margin-bottom:15px;">Deal Damage</h3>
-            <input id="damageInput" type="number" min="1"
+            <input id="damageInput" type="number" min="1" inputmode="numeric" pattern="\d*"
                 style="font-size:20px; width:80px; text-align:center; margin-bottom:15px;" />
             <div style="display:flex; gap:10px;">
                 <button id="damageOkBtn" class="center-button yellow-button">OK</button>
@@ -498,7 +498,7 @@
         <div
             style="background:#222; padding:30px 20px 20px 20px; border-radius:12px; box-shadow:0 0 20px #000; min-width:240px; display:flex; flex-direction:column; align-items:center;">
             <h3 id="counterEditModalTitle" style="margin-bottom:15px;">Edit Counter</h3>
-            <input id="counterEditInput" type="number" min="0"
+            <input id="counterEditInput" type="number" min="0" inputmode="numeric" pattern="\d*"
                 style="font-size:20px; width:80px; text-align:center; margin-bottom:15px;" />
             <div style="display:flex; gap:10px;">
                 <button id="counterEditOkBtn" class="center-button yellow-button">OK</button>
