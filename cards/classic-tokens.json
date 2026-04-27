@@ -1,0 +1,668 @@
+[
+  {
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "cost": 1,
+    "dbfId": 68338,
+    "health": 1,
+    "id": "VAN_CS2_050",
+    "name": "Searing Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "cost": 1,
+    "dbfId": 68339,
+    "health": 2,
+    "id": "VAN_CS2_051",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Stoneclaw Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ETaunt\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "cost": 1,
+    "dbfId": 68340,
+    "health": 2,
+    "id": "VAN_CS2_052",
+    "mechanics": [
+      "SPELLPOWER"
+    ],
+    "name": "Wrath of Air Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "spellDamage": 1,
+    "text": "\u003Cb\u003ESpell Damage \u002B1\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "cost": 1,
+    "dbfId": 68355,
+    "durability": 0,
+    "health": 2,
+    "id": "VAN_CS2_082",
+    "name": "Wicked Knife",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "type": "WEAPON"
+  },
+  {
+    "attack": 1,
+    "cardClass": "PALADIN",
+    "cost": 1,
+    "dbfId": 71409,
+    "health": 1,
+    "id": "VAN_CS2_101t",
+    "name": "Silver Hand Recruit",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 69757,
+    "faction": "ALLIANCE",
+    "health": 2,
+    "id": "VAN_CS2_152",
+    "name": "Squire",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 68417,
+    "health": 1,
+    "id": "VAN_CS2_boar",
+    "name": "Boar",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 0,
+    "cardClass": "MAGE",
+    "cost": 0,
+    "dbfId": 68418,
+    "health": 2,
+    "id": "VAN_CS2_mirror",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Mirror Image",
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ETaunt\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 0,
+    "dbfId": 68419,
+    "health": 1,
+    "id": "VAN_CS2_tk1",
+    "name": "Sheep",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 3,
+    "cardClass": "DREAM",
+    "cost": 2,
+    "dbfId": 70474,
+    "health": 5,
+    "id": "VAN_DREAM_01",
+    "mechanics": [
+      "ELUSIVE"
+    ],
+    "name": "Laughing Sister",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EElusive\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "cardClass": "DREAM",
+    "cost": 2,
+    "dbfId": 70475,
+    "id": "VAN_DREAM_02",
+    "name": "Ysera Awakens",
+    "set": "VANILLA",
+    "text": "Deal $5 damage to all characters except Ysera.",
+    "type": "SPELL"
+  },
+  {
+    "attack": 7,
+    "cardClass": "DREAM",
+    "cost": 4,
+    "dbfId": 71422,
+    "health": 6,
+    "id": "VAN_DREAM_03",
+    "name": "Emerald Drake",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "cardClass": "DREAM",
+    "cost": 0,
+    "dbfId": 70484,
+    "id": "VAN_DREAM_04",
+    "name": "Dream",
+    "set": "VANILLA",
+    "text": "Return a minion to its owner\u0027s hand.",
+    "type": "SPELL"
+  },
+  {
+    "cardClass": "DREAM",
+    "cost": 0,
+    "dbfId": 70485,
+    "id": "VAN_DREAM_05",
+    "name": "Nightmare",
+    "set": "VANILLA",
+    "text": "Give a minion \u002B5/\u002B5. At the start of your next turn, destroy it.",
+    "type": "SPELL"
+  },
+  {
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "cost": 4,
+    "dbfId": 70473,
+    "elite": true,
+    "health": 5,
+    "id": "VAN_EX1_110t",
+    "name": "Baine Bloodhoof",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "cost": 1,
+    "dbfId": 71411,
+    "health": 1,
+    "id": "VAN_EX1_130a",
+    "name": "Defender",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 4,
+    "cardClass": "DRUID",
+    "cost": 5,
+    "dbfId": 70464,
+    "health": 4,
+    "id": "VAN_EX1_165t1",
+    "mechanics": [
+      "CHARGE"
+    ],
+    "name": "Druid of the Claw [CHARGE]",
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ECharge\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 4,
+    "cardClass": "DRUID",
+    "cost": 5,
+    "dbfId": 70466,
+    "health": 6,
+    "id": "VAN_EX1_165t2",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Druid of the Claw [TAUNT]",
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ETaunt\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 0,
+    "cardClass": "PRIEST",
+    "cost": 0,
+    "dbfId": 70461,
+    "health": 1,
+    "id": "VAN_EX1_345t",
+    "name": "Shadow of Nothing",
+    "set": "VANILLA",
+    "text": "Mindgames whiffed! Your opponent had no minions!",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 0,
+    "dbfId": 68469,
+    "health": 1,
+    "id": "VAN_EX1_506a",
+    "name": "Murloc Scout",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "cost": 0,
+    "dbfId": 71306,
+    "health": 1,
+    "id": "VAN_EX1_554t",
+    "name": "Snake",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "set": "VANILLA",
+    "techLevel": 1,
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 70044,
+    "health": 1,
+    "id": "VAN_EX1_598",
+    "name": "Imp",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "cost": 3,
+    "dbfId": 70064,
+    "elite": true,
+    "health": 3,
+    "id": "VAN_EX1_finkle",
+    "name": "Pip Quickwit",
+    "set": "VANILLA",
+    "techLevel": 1,
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "cost": 2,
+    "dbfId": 70065,
+    "health": 3,
+    "id": "VAN_EX1_tk11",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Spirit Wolf",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ETaunt\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 70066,
+    "health": 1,
+    "id": "VAN_EX1_tk28",
+    "name": "Squirrel",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "cost": 5,
+    "dbfId": 70067,
+    "health": 5,
+    "id": "VAN_EX1_tk29",
+    "name": "Devilsaur",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "cardClass": "WARLOCK",
+    "cost": 2,
+    "dbfId": 70069,
+    "id": "VAN_EX1_tk33",
+    "name": "INFERNO!",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nSummon a 6/6 Infernal.",
+    "type": "HERO_POWER"
+  },
+  {
+    "attack": 6,
+    "cardClass": "WARLOCK",
+    "cost": 6,
+    "dbfId": 70070,
+    "health": 6,
+    "id": "VAN_EX1_tk34",
+    "name": "Infernal",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "DRUID",
+    "cost": 1,
+    "dbfId": 70071,
+    "health": 2,
+    "id": "VAN_EX1_tk9",
+    "name": "Treant",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "DRUID",
+    "cost": 1,
+    "dbfId": 71310,
+    "health": 2,
+    "id": "VAN_EX1_tk9b",
+    "mechanics": [
+      "CHARGE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Treant",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ECharge\u003C/b\u003E. At the end of the turn, destroy this minion.",
+    "type": "MINION"
+  },
+  {
+    "cardClass": "WARRIOR",
+    "cost": 2,
+    "dbfId": 68500,
+    "id": "VAN_HERO_01bp",
+    "name": "Armor Up!",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nGain 2 Armor.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "SHAMAN",
+    "cost": 2,
+    "dbfId": 68502,
+    "id": "VAN_HERO_02bp",
+    "name": "Totemic Call",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nSummon a random basic Totem.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "ROGUE",
+    "cost": 2,
+    "dbfId": 68506,
+    "id": "VAN_HERO_03bp",
+    "name": "Dagger Mastery",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nEquip a 1/2 Dagger.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "PALADIN",
+    "cost": 2,
+    "dbfId": 68508,
+    "id": "VAN_HERO_04bp",
+    "name": "Reinforce",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nSummon a 1/1 Silver Hand Recruit.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "HUNTER",
+    "collectionText": "\u003Cb\u003EHero Power\u003C/b\u003E\nDeal $2 damage.",
+    "cost": 2,
+    "dbfId": 68510,
+    "id": "VAN_HERO_05bp",
+    "name": "Steady Shot",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nDeal $2 damage to the enemy hero.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "DRUID",
+    "cost": 2,
+    "dbfId": 68512,
+    "id": "VAN_HERO_06bp",
+    "name": "Shapeshift",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\n\u002B1 Attack this turn.\n\u002B1 Armor.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "WARLOCK",
+    "cost": 2,
+    "dbfId": 68514,
+    "id": "VAN_HERO_07bp",
+    "name": "Life Tap",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nDraw a card and take $2\u00A0damage.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "MAGE",
+    "cost": 2,
+    "dbfId": 68516,
+    "id": "VAN_HERO_08bp",
+    "name": "Fireblast",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "targetingArrowText": "Deal 1 damage.",
+    "text": "\u003Cb\u003EHero Power\u003C/b\u003E\nDeal $1 damage.",
+    "type": "HERO_POWER"
+  },
+  {
+    "cardClass": "PRIEST",
+    "cost": 2,
+    "dbfId": 68518,
+    "id": "VAN_HERO_09bp",
+    "name": "Lesser Heal",
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "[x]\u003Cb\u003EHero Power\u003C/b\u003E\nRestore #2 Health.",
+    "type": "HERO_POWER"
+  },
+  {
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "cost": 1,
+    "dbfId": 68527,
+    "health": 2,
+    "id": "VAN_NEW1_009",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Healing Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "FREE",
+    "set": "VANILLA",
+    "text": "At the end of your turn, restore #1 Health to all friendly minions.",
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 0,
+    "dbfId": 71308,
+    "health": 1,
+    "id": "VAN_NEW1_026t",
+    "name": "Violet Apprentice",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "cost": 3,
+    "dbfId": 68530,
+    "health": 4,
+    "id": "VAN_NEW1_032",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Misha",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ETaunt\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "cost": 3,
+    "dbfId": 68531,
+    "health": 4,
+    "id": "VAN_NEW1_033",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Leokk",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "Your other minions have \u002B1 Attack.",
+    "type": "MINION"
+  },
+  {
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "cost": 3,
+    "dbfId": 68533,
+    "health": 2,
+    "id": "VAN_NEW1_034",
+    "mechanics": [
+      "CHARGE"
+    ],
+    "name": "Huffer",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "VANILLA",
+    "text": "\u003Cb\u003ECharge\u003C/b\u003E",
+    "type": "MINION"
+  },
+  {
+    "cardClass": "NEUTRAL",
+    "cost": 4,
+    "dbfId": 74754,
+    "id": "VAN_PRO_001c",
+    "name": "Power of the Horde",
+    "set": "VANILLA",
+    "text": "Summon a random Horde Warrior.",
+    "type": "SPELL"
+  },
+  {
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 70099,
+    "health": 1,
+    "id": "VAN_skele21",
+    "name": "Damaged Golem",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "set": "VANILLA",
+    "techLevel": 1,
+    "type": "MINION"
+  },
+  {
+    "attack": 1,
+    "cardClass": "MAGE",
+    "cost": 0,
+    "dbfId": 71307,
+    "health": 3,
+    "id": "VAN_tt_010a",
+    "name": "Spellbender",
+    "set": "VANILLA",
+    "type": "MINION"
+  },
+  {
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 70500,
+    "health": 1,
+    "id": "VAN_TU4e_002t",
+    "name": "Flame of Azzinoth",
+    "set": "VANILLA",
+    "type": "MINION"
+  }
+]
