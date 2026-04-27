@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSClassic Deck Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:      #c9a84c;
+    --gold-light:#f0d080;
+    --gold-dim:  #7a5f28;
+    --bg-deep:   #0d0b07;
+    --bg-panel:  #16120a;
+    --bg-card:   #1e1810;
+    --bg-hover:  #2a2115;
+    --border:    #3a2e18;
+    --border-hi: #5a4520;
+    --text:      #e8d9b0;
+    --text-dim:  #8a7550;
+    --red:       #c0392b;
+    --blue:      #2980b9;
+    --green:     #27ae60;
+    --purple:    #8e44ad;
+    --orange:    #e67e22;
+
+    --rarity-free:      #aaa;
+    --rarity-common:    #e0e0e0;
+    --rarity-rare:      #4a90d9;
+    --rarity-epic:      #b45ee4;
+    --rarity-legendary: #f0a033;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Crimson Text', serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ─── HEADER ─────────────────────────────────── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 54px;
+    background: linear-gradient(180deg, #1a1408 0%, #120f06 100%);
+    border-bottom: 1px solid var(--border-hi);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+    flex-shrink: 0;
+    z-index: 10;
+  }
+
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  }
+  .logo span { color: var(--text-dim); font-weight: 400; font-size: 0.8em; }
+
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+
+  .btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 7px 16px;
+    border-radius: 3px;
+    border: 1px solid var(--border-hi);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold-dim); background: rgba(201,168,76,0.05); }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #b8922a 0%, #d4a840 50%, #b8922a 100%);
+    color: #1a1000;
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,0.2);
+  }
+  .btn-gold:hover { box-shadow: 0 0 20px rgba(201,168,76,0.4); transform: translateY(-1px); }
+
+  /* ─── LAYOUT ──────────────────────────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr 300px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ─── FILTER SIDEBAR ──────────────────────────── */
+  .sidebar {
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .sidebar-section {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .search-wrap { position: relative; }
+  .search-wrap input {
+    width: 100%;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    padding: 7px 10px 7px 32px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--gold-dim); }
+  .search-wrap::before {
+    content: '⚲';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1);
+    color: var(--text-dim);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  /* Mana filter */
+  .mana-filter {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .mana-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #3a5fa0, #1a3060);
+    border: 2px solid #2a4a80;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mana-btn:hover, .mana-btn.active {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(201,168,76,0.4);
+    transform: scale(1.1);
+  }
+  .mana-btn.active { background: radial-gradient(circle at 40% 35%, #5a7fc0, #2a5090); }
+
+  /* Class filter */
+  .class-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  .class-btn {
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .class-btn:hover { border-color: var(--border-hi); color: var(--text); }
+  .class-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  /* Type / Rarity */
+  .pill-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .pill {
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+  .pill:hover { border-color: var(--border-hi); color: var(--text); }
+  .pill.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  .load-btn-wrap {
+    padding: 14px 16px;
+  }
+  #loadBtn {
+    width: 100%;
+    text-align: center;
+    font-size: 0.68rem;
+  }
+  #fileInput { display: none; }
+
+  .card-count-info {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ─── CARD GRID ───────────────────────────────── */
+  .card-browser {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+
+  .card-grid-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+  .card-grid-wrap::-webkit-scrollbar { width: 6px; }
+  .card-grid-wrap::-webkit-scrollbar-track { background: var(--bg-deep); }
+  .card-grid-wrap::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .card-item {
+    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 0.72;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-item:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.2);
+    z-index: 2;
+  }
+  .card-item.maxed { opacity: 0.4; cursor: not-allowed; }
+  .card-item.maxed:hover { transform: none; box-shadow: none; }
+
+  .card-img-wrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    background: #0a0806;
+  }
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .card-item:hover .card-img-wrap img { transform: scale(1.05); }
+
+  .card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    font-style: italic;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .card-footer {
+    padding: 5px 7px 6px;
+    background: linear-gradient(180deg, rgba(13,11,7,0) 0%, rgba(13,11,7,0.95) 30%, #0d0b07 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+  }
+
+  .mana-gem {
+    background: radial-gradient(circle at 40% 35%, #3a5fa0, #1a3060);
+    border: 1px solid #2a4a80;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rarity-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .rarity-FREE    { background: var(--rarity-free); }
+  .rarity-COMMON  { background: var(--rarity-common); }
+  .rarity-RARE    { background: var(--rarity-rare); }
+  .rarity-EPIC    { background: var(--rarity-epic); }
+  .rarity-LEGENDARY { background: var(--rarity-legendary); }
+
+  .card-type-tag {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    font-style: italic;
+    flex: 1;
+    text-align: right;
+  }
+
+  /* In-deck badge */
+  .in-deck-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(201,168,76,0.9);
+    color: #1a1000;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .empty-state {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+  }
+  .empty-state .big-icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.3; }
+  .empty-state p { font-size: 1rem; font-style: italic; }
+
+  /* ─── DECK PANEL ──────────────────────────────── */
+  .deck-panel {
+    background: var(--bg-panel);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .deck-header {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .deck-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .deck-name-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-hi);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    width: 160px;
+    outline: none;
+    padding-bottom: 2px;
+    letter-spacing: 0.05em;
+  }
+  .deck-name-input:focus { border-bottom-color: var(--gold); }
+  .deck-name-input::placeholder { color: var(--text-dim); font-weight: 400; }
+
+  .deck-count {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .deck-count .num { color: var(--gold-light); }
+  .deck-count .denom { color: var(--text-dim); font-size: 0.7em; }
+
+  /* Mana curve bars */
+  .mana-curve {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 30px;
+  }
+
+  .curve-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .curve-bar-wrap {
+    width: 100%;
+    height: 22px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .curve-bar {
+    width: 70%;
+    background: linear-gradient(180deg, #4a7fd0 0%, #1a3060 100%);
+    border-radius: 2px 2px 0 0;
+    transition: height 0.3s ease;
+    min-height: 0;
+  }
+  .curve-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.45rem;
+    color: var(--text-dim);
+  }
+
+  .deck-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  .deck-scroll::-webkit-scrollbar { width: 4px; }
+  .deck-scroll::-webkit-scrollbar-track { background: transparent; }
+  .deck-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .deck-entry {
+    display: flex;
+    align-items: center;
+    padding: 4px 14px 4px 12px;
+    gap: 8px;
+    border-bottom: 1px solid rgba(58,46,24,0.3);
+    transition: background 0.15s;
+    cursor: default;
+    position: relative;
+  }
+  .deck-entry:hover { background: var(--bg-hover); }
+
+  .deck-entry-mana {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #3a5fa0, #1a3060);
+    border: 1px solid #2a4a80;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .deck-entry-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--bg-deep);
+  }
+  .deck-entry-thumb img {
+    width: 200%;
+    height: 200%;
+    object-fit: cover;
+    object-position: 20% 15%;
+    margin-left: -50%;
+    margin-top: -10%;
+  }
+
+  .deck-entry-name {
+    flex: 1;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .deck-entry-name.legendary { color: var(--rarity-legendary); }
+
+  .deck-entry-count {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--gold);
+    width: 14px;
+    text-align: center;
+  }
+
+  .deck-remove-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1;
+    padding: 0 2px;
+    transition: color 0.15s;
+    opacity: 0;
+  }
+  .deck-entry:hover .deck-remove-btn { opacity: 1; }
+  .deck-remove-btn:hover { color: #e74c3c; }
+
+  /* Separator by class */
+  .deck-class-sep {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    padding: 6px 14px 3px;
+  }
+
+  .deck-footer {
+    border-top: 1px solid var(--border);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .deck-footer-row { display: flex; gap: 8px; }
+  #exportBtn, #clearBtn {
+    flex: 1;
+    font-size: 0.62rem;
+    padding: 8px;
+    text-align: center;
+  }
+
+  /* ─── MODAL ───────────────────────────────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-hi);
+    border-radius: 6px;
+    width: 480px;
+    max-width: 95vw;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  }
+
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .modal-close:hover { color: var(--text); }
+
+  .modal-body { padding: 20px; }
+
+  .export-textarea {
+    width: 100%;
+    height: 250px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    padding: 12px;
+    resize: none;
+    outline: none;
+    white-space: pre;
+    overflow-y: auto;
+  }
+  .export-textarea::-webkit-scrollbar { width: 4px; }
+  .export-textarea::-webkit-scrollbar-thumb { background: var(--border-hi); }
+
+  .modal-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  /* ─── TOOLTIP ─────────────────────────────────── */
+  .tooltip {
+    position: fixed;
+    z-index: 200;
+    pointer-events: none;
+    display: none;
+    width: 200px;
+  }
+  .tooltip.visible { display: block; }
+  .tooltip-inner {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-hi);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  }
+  .tooltip-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .tooltip-text {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .tooltip-stats {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+  .tooltip-atk { color: #e0a030; }
+  .tooltip-hp  { color: #e05050; }
+
+  /* ─── LOADING ─────────────────────────────────── */
+  .loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .loading-overlay.show { display: flex; }
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold-light); letter-spacing: 0.12em; }
+
+  /* ─── NOTIFICATION ────────────────────────────── */
+  .notif {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--bg-panel);
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 300;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .notif.show { transform: translateX(-50%) translateY(0); }
+
+  /* Sort bar */
+  .sort-bar {
+    display: flex;
+    gap: 5px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-panel);
+    flex-shrink: 0;
+  }
+  .sort-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    background: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .sort-btn:hover { color: var(--text); border-color: var(--border); }
+  .sort-btn.active { color: var(--gold); border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
+
+  .results-info {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-left: auto;
+    align-self: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────── -->
+<header>
+  <div class="logo">HSClassic <span style="font-size:0.65em;margin-left:6px;">DECK BUILDER</span></div>
+  <div class="header-actions">
+    <button class="btn btn-ghost" id="newDeckBtn">New Deck</button>
+    <button class="btn btn-gold" id="exportBtnTop">Export Deck</button>
+  </div>
+</header>
+
+<!-- ─── MAIN LAYOUT ──────────────────────── -->
+<div class="layout">
+
+  <!-- FILTER SIDEBAR -->
+  <aside class="sidebar">
+    <div class="load-btn-wrap">
+      <button class="btn btn-gold" id="loadBtn" style="width:100%;text-align:center;font-size:0.68rem;">⊕ Load Card JSON</button>
+      <input type="file" id="fileInput" accept=".json">
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Search</div>
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Card name or text…">
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Mana Cost</div>
+      <div class="mana-filter" id="manaFilter">
+        <button class="mana-btn" data-mana="0">0</button>
+        <button class="mana-btn" data-mana="1">1</button>
+        <button class="mana-btn" data-mana="2">2</button>
+        <button class="mana-btn" data-mana="3">3</button>
+        <button class="mana-btn" data-mana="4">4</button>
+        <button class="mana-btn" data-mana="5">5</button>
+        <button class="mana-btn" data-mana="6">6</button>
+        <button class="mana-btn" data-mana="7+">7+</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Class</div>
+      <div class="class-grid" id="classFilter"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Type</div>
+      <div class="pill-row" id="typeFilter">
+        <button class="pill" data-type="MINION">Minion</button>
+        <button class="pill" data-type="SPELL">Spell</button>
+        <button class="pill" data-type="WEAPON">Weapon</button>
+        <button class="pill" data-type="HERO">Hero</button>
+        <button class="pill" data-type="LOCATION">Location</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">Rarity</div>
+      <div class="pill-row" id="rarityFilter">
+        <button class="pill" data-rarity="FREE">Free</button>
+        <button class="pill" data-rarity="COMMON">Common</button>
+        <button class="pill" data-rarity="RARE">Rare</button>
+        <button class="pill" data-rarity="EPIC">Epic</button>
+        <button class="pill" data-rarity="LEGENDARY">Legendary</button>
+      </div>
+    </div>
+
+    <div class="card-count-info" id="cardCountInfo">No cards loaded</div>
+  </aside>
+
+  <!-- CARD BROWSER -->
+  <main class="card-browser">
+    <div class="sort-bar">
+      <span class="section-label" style="margin:0;align-self:center;">Sort:</span>
+      <button class="sort-btn active" data-sort="mana">Mana</button>
+      <button class="sort-btn" data-sort="name">Name</button>
+      <button class="sort-btn" data-sort="attack">Attack</button>
+      <button class="sort-btn" data-sort="health">Health</button>
+      <span class="results-info" id="resultsInfo"></span>
+    </div>
+    <div class="card-grid-wrap">
+      <div class="card-grid" id="cardGrid">
+        <div class="empty-state">
+          <div class="big-icon">🃏</div>
+          <p>Loading cards…</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- DECK PANEL -->
+  <aside class="deck-panel">
+    <div class="deck-header">
+      <div class="deck-title-row">
+        <input class="deck-name-input" id="deckNameInput" placeholder="Deck Name" maxlength="40" value="My Deck">
+        <div class="deck-count"><span class="num" id="deckCountNum">0</span><span class="denom">/30</span></div>
+      </div>
+      <div class="mana-curve" id="manaCurve">
+        <!-- Columns 0–7+ populated by JS -->
+      </div>
+    </div>
+
+    <div class="deck-scroll" id="deckList"></div>
+
+    <div class="deck-footer">
+      <div class="deck-footer-row">
+        <button class="btn btn-gold" id="exportBtn">Export</button>
+        <button class="btn btn-ghost" id="clearBtn">Clear</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── EXPORT MODAL ─────────────────────── -->
+<div class="modal-overlay" id="exportModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Export Deck</span>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <textarea class="export-textarea" id="exportText" readonly></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="modalClose2">Close</button>
+      <button class="btn btn-gold" id="copyExportBtn">Copy to Clipboard</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOOLTIP ──────────────────────────── -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-inner">
+    <div class="tooltip-name" id="ttName"></div>
+    <div class="tooltip-text" id="ttText"></div>
+    <div class="tooltip-stats" id="ttStats"></div>
+  </div>
+</div>
+
+<!-- ─── LOADING ──────────────────────────── -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading Cards…</div>
+</div>
+
+<!-- ─── NOTIFICATION ─────────────────────── -->
+<div class="notif" id="notif"></div>
+
+<script>
+// ─── STATE ─────────────────────────────────────────────────────────────────
+let allCards = [];
+let filteredCards = [];
+let deck = []; // [{card, count}]
+
+const filters = {
+  search: '',
+  mana: new Set(),
+  classes: new Set(),
+  types: new Set(),
+  rarities: new Set(),
+};
+let sortBy = 'mana';
+
+// ─── HELPERS ───────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const imgUrl = id => `https://art.hearthstonejson.com/v1/render/latest/enUS/512x/${id}.png`;
+
+function notify(msg) {
+  const n = $('notif');
+  n.textContent = msg;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 2000);
+}
+
+// ─── LOAD JSON ─────────────────────────────────────────────────────────────
+function parseAndLoadCards(data) {
+  let cards;
+  if (Array.isArray(data)) cards = data;
+  else if (data.cards) cards = data.cards;
+  else if (Array.isArray(Object.values(data)[0])) cards = Object.values(data).flat();
+  else cards = Object.values(data);
+
+  allCards = cards.filter(c =>
+    c.id && c.name && c.cost !== undefined &&
+    ['MINION','SPELL','WEAPON','HERO','LOCATION'].includes(c.type) &&
+    c.set !== 'HERO_SKINS' && c.set !== 'TAVERN_BRAWL'
+  );
+
+  populateClassFilter();
+  applyFilters();
+  notify(`✓ Loaded ${allCards.length.toLocaleString()} cards`);
+}
+
+// Auto-fetch cards.json from the same directory on page load
+async function autoLoadCards() {
+  $('loadingOverlay').classList.add('show');
+  try {
+    const res = await fetch('cards/classic.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    parseAndLoadCards(data);
+  } catch (err) {
+    console.warn('Could not auto-load cards.json:', err);
+    $('cardCountInfo').textContent = 'Place cards.json alongside this file, or load manually';
+  }
+  $('loadingOverlay').classList.remove('show');
+}
+
+// Manual file picker fallback
+$('loadBtn').addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  $('loadingOverlay').classList.add('show');
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      parseAndLoadCards(JSON.parse(ev.target.result));
+    } catch(err) {
+      notify('Error reading JSON file');
+      console.error(err);
+    }
+    $('loadingOverlay').classList.remove('show');
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+});
+
+// ─── CLASS FILTER POPULATION ───────────────────────────────────────────────
+const CLASS_DISPLAY = {
+  DEATHKNIGHT:'Death Knight', DEMONHUNTER:'Demon Hunter', DRUID:'Druid',
+  HUNTER:'Hunter', MAGE:'Mage', NEUTRAL:'Neutral', PALADIN:'Paladin',
+  PRIEST:'Priest', ROGUE:'Rogue', SHAMAN:'Shaman', WARLOCK:'Warlock', WARRIOR:'Warrior'
+};
+
+function populateClassFilter() {
+  const classes = [...new Set(allCards.map(c => c.cardClass || 'NEUTRAL'))].sort();
+  const wrap = $('classFilter');
+  wrap.innerHTML = '';
+  classes.forEach(cls => {
+    const btn = document.createElement('button');
+    btn.className = 'class-btn';
+    btn.dataset.class = cls;
+    btn.textContent = CLASS_DISPLAY[cls] || cls;
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      if (filters.classes.has(cls)) filters.classes.delete(cls);
+      else filters.classes.add(cls);
+      applyFilters();
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+// ─── FILTER EVENT LISTENERS ────────────────────────────────────────────────
+$('searchInput').addEventListener('input', e => {
+  filters.search = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+document.querySelectorAll('#manaFilter .mana-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const v = btn.dataset.mana;
+    if (filters.mana.has(v)) filters.mana.delete(v);
+    else filters.mana.add(v);
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('#typeFilter .pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const v = btn.dataset.type;
+    if (filters.types.has(v)) filters.types.delete(v);
+    else filters.types.add(v);
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('#rarityFilter .pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const v = btn.dataset.rarity;
+    if (filters.rarities.has(v)) filters.rarities.delete(v);
+    else filters.rarities.add(v);
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sortBy = btn.dataset.sort;
+    renderCards();
+  });
+});
+
+// ─── APPLY FILTERS ─────────────────────────────────────────────────────────
+function applyFilters() {
+  filteredCards = allCards.filter(c => {
+    if (filters.search) {
+      const name = (c.name || '').toLowerCase();
+      const text = (c.text || '').toLowerCase();
+      if (!name.includes(filters.search) && !text.includes(filters.search)) return false;
+    }
+    if (filters.mana.size) {
+      const cost = c.cost || 0;
+      const bucket = cost >= 7 ? '7+' : String(cost);
+      if (!filters.mana.has(bucket)) return false;
+    }
+    if (filters.classes.size) {
+      if (!filters.classes.has(c.cardClass || 'NEUTRAL')) return false;
+    }
+    if (filters.types.size) {
+      if (!filters.types.has(c.type)) return false;
+    }
+    if (filters.rarities.size) {
+      if (!filters.rarities.has(c.rarity)) return false;
+    }
+    return true;
+  });
+
+  $('cardCountInfo').textContent = `${allCards.length.toLocaleString()} cards loaded`;
+  renderCards();
+}
+
+// ─── RENDER CARDS ──────────────────────────────────────────────────────────
+function getSortVal(c) {
+  if (sortBy === 'mana') return (c.cost || 0) * 1e6 + (c.name||'').charCodeAt(0);
+  if (sortBy === 'name') return c.name || '';
+  if (sortBy === 'attack') return -(c.attack || 0);
+  if (sortBy === 'health') return -(c.health || 0);
+  return 0;
+}
+
+function getDeckCount(card) {
+  const entry = deck.find(e => e.card.id === card.id);
+  return entry ? entry.count : 0;
+}
+function getMaxCopies(card) {
+  return card.rarity === 'LEGENDARY' ? 1 : 2;
+}
+
+function renderCards() {
+  const grid = $('cardGrid');
+  const sorted = [...filteredCards].sort((a, b) => {
+    const va = getSortVal(a), vb = getSortVal(b);
+    return va < vb ? -1 : va > vb ? 1 : 0;
+  });
+
+  $('resultsInfo').textContent = `${sorted.length.toLocaleString()} cards`;
+
+  if (sorted.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="big-icon">🔍</div><p>No cards match your filters</p></div>`;
+    return;
+  }
+
+  // Limit render to 500 for performance
+  const visible = sorted.slice(0, 500);
+  if (sorted.length > 500) $('resultsInfo').textContent += ' (showing 500)';
+
+  grid.innerHTML = '';
+  visible.forEach(card => {
+    const inDeck = getDeckCount(card);
+    const maxCopies = getMaxCopies(card);
+    const deckFull = deck.reduce((s, e) => s + e.count, 0) >= 30;
+    const isMaxed = inDeck >= maxCopies || (deckFull && inDeck === 0);
+
+    const el = document.createElement('div');
+    el.className = 'card-item' + (isMaxed ? ' maxed' : '');
+    el.innerHTML = `
+      <div class="card-img-wrap">
+        <img src="${imgUrl(card.id)}" alt="${card.name}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+             loading="lazy">
+        <div class="card-img-placeholder" style="display:none">
+          <span style="font-size:1.5rem">🃏</span>
+          <span>${card.name}</span>
+        </div>
+        ${inDeck > 0 ? `<div class="in-deck-badge">${inDeck}</div>` : ''}
+      </div>
+      <div class="card-footer">
+        <div class="card-name">${card.name}</div>
+        <div class="card-meta">
+          <div class="mana-gem">${card.cost ?? '?'}</div>
+          <div class="rarity-dot rarity-${card.rarity || 'FREE'}"></div>
+          <div class="card-type-tag">${(card.type||'').toLowerCase()}</div>
+        </div>
+      </div>
+    `;
+
+    el.addEventListener('click', () => addCardToDeck(card));
+    el.addEventListener('mouseenter', ev => showTooltip(card, ev));
+    el.addEventListener('mousemove', ev => positionTooltip(ev));
+    el.addEventListener('mouseleave', hideTooltip);
+
+    grid.appendChild(el);
+  });
+}
+
+// ─── TOOLTIP ───────────────────────────────────────────────────────────────
+function stripTags(html) {
+  return (html||'').replace(/<[^>]+>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\[x\]/g,'');
+}
+
+function showTooltip(card, ev) {
+  $('ttName').textContent = card.name;
+  $('ttText').textContent = stripTags(card.text) || '(No text)';
+  const stats = [];
+  if (card.attack !== undefined) stats.push(`<span class="tooltip-atk">⚔ ${card.attack}</span>`);
+  if (card.health !== undefined) stats.push(`<span class="tooltip-hp">♥ ${card.health}</span>`);
+  if (card.durability !== undefined) stats.push(`<span class="tooltip-hp">🛡 ${card.durability}</span>`);
+  $('ttStats').innerHTML = stats.join(' ');
+  $('tooltip').classList.add('visible');
+  positionTooltip(ev);
+}
+
+function positionTooltip(ev) {
+  const tt = $('tooltip');
+  const x = ev.clientX + 15;
+  const y = ev.clientY - 10;
+  const maxX = window.innerWidth - 220;
+  const maxY = window.innerHeight - 200;
+  tt.style.left = Math.min(x, maxX) + 'px';
+  tt.style.top = Math.min(y, maxY) + 'px';
+}
+function hideTooltip() { $('tooltip').classList.remove('visible'); }
+
+// ─── DECK LOGIC ────────────────────────────────────────────────────────────
+function addCardToDeck(card) {
+  const total = deck.reduce((s, e) => s + e.count, 0);
+  const entry = deck.find(e => e.card.id === card.id);
+  const max = getMaxCopies(card);
+
+  if (entry && entry.count >= max) { notify(`Max ${max} cop${max===1?'y':'ies'} of ${card.name}`); return; }
+  if (total >= 30) { notify('Deck is full (30 cards)'); return; }
+
+  if (entry) entry.count++;
+  else deck.push({ card, count: 1 });
+
+  renderDeck();
+  renderCards(); // update badges
+}
+
+function removeFromDeck(cardId) {
+  const idx = deck.findIndex(e => e.card.id === cardId);
+  if (idx === -1) return;
+  deck[idx].count--;
+  if (deck[idx].count === 0) deck.splice(idx, 1);
+  renderDeck();
+  renderCards();
+}
+
+function renderDeck() {
+  const list = $('deckList');
+  const total = deck.reduce((s, e) => s + e.count, 0);
+  $('deckCountNum').textContent = total;
+
+  // Sort by mana then name
+  const sorted = [...deck].sort((a, b) => {
+    const ca = a.card, cb = b.card;
+    return (ca.cost||0) - (cb.cost||0) || (ca.name||'').localeCompare(cb.name||'');
+  });
+
+  list.innerHTML = '';
+  sorted.forEach(({card, count}) => {
+    const el = document.createElement('div');
+    el.className = 'deck-entry';
+    const isLeg = card.rarity === 'LEGENDARY';
+    el.innerHTML = `
+      <div class="deck-entry-mana">${card.cost ?? '?'}</div>
+      <div class="deck-entry-thumb">
+        <img src="${imgUrl(card.id)}" alt="" onerror="this.style.display='none'" loading="lazy">
+      </div>
+      <div class="deck-entry-name ${isLeg?'legendary':''}">${isLeg?'◆ ':''}${card.name}</div>
+      <div class="deck-entry-count">${count > 1 ? `×${count}` : ''}</div>
+      <button class="deck-remove-btn" data-id="${card.id}" title="Remove">−</button>
+    `;
+    list.appendChild(el);
+  });
+
+  // Remove buttons
+  list.querySelectorAll('.deck-remove-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); removeFromDeck(btn.dataset.id); });
+  });
+
+  renderManaCurve();
+}
+
+function renderManaCurve() {
+  const curve = $('manaCurve');
+  curve.innerHTML = '';
+  const buckets = [0,1,2,3,4,5,6,'7+'];
+  const counts = {};
+  buckets.forEach(b => counts[b] = 0);
+  deck.forEach(({card, count}) => {
+    const c = card.cost || 0;
+    const b = c >= 7 ? '7+' : c;
+    counts[b] = (counts[b]||0) + count;
+  });
+  const maxCount = Math.max(...Object.values(counts), 1);
+
+  buckets.forEach(b => {
+    const col = document.createElement('div');
+    col.className = 'curve-col';
+    const h = Math.round((counts[b] / maxCount) * 18);
+    col.innerHTML = `
+      <div class="curve-bar-wrap">
+        <div class="curve-bar" style="height:${h}px"></div>
+      </div>
+      <div class="curve-label">${b}</div>
+    `;
+    curve.appendChild(col);
+  });
+}
+
+// ─── EXPORT ────────────────────────────────────────────────────────────────
+function buildExportText() {
+  const name = $('deckNameInput').value.trim() || 'My Deck';
+  const lines = [`// ${name}`];
+  const sorted = [...deck].sort((a, b) =>
+    (a.card.cost||0) - (b.card.cost||0) || (a.card.name||'').localeCompare(b.card.name||''));
+  sorted.forEach(({card, count}) => {
+    lines.push(`${count} ${card.name} (HSCLASSIC)`);
+  });
+  return lines.join('\n');
+}
+
+function openExport() {
+  if (deck.length === 0) { notify('Your deck is empty!'); return; }
+  $('exportText').value = buildExportText();
+  $('exportModal').classList.add('open');
+}
+
+$('exportBtn').addEventListener('click', openExport);
+$('exportBtnTop').addEventListener('click', openExport);
+$('modalClose').addEventListener('click', () => $('exportModal').classList.remove('open'));
+$('modalClose2').addEventListener('click', () => $('exportModal').classList.remove('open'));
+$('exportModal').addEventListener('click', e => { if (e.target === $('exportModal')) $('exportModal').classList.remove('open'); });
+
+$('copyExportBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText($('exportText').value).then(() => notify('✓ Copied to clipboard!'));
+});
+
+// ─── CONTROLS ──────────────────────────────────────────────────────────────
+$('clearBtn').addEventListener('click', () => {
+  if (deck.length === 0) return;
+  deck = [];
+  renderDeck();
+  renderCards();
+  notify('Deck cleared');
+});
+
+$('newDeckBtn').addEventListener('click', () => {
+  deck = [];
+  $('deckNameInput').value = 'My Deck';
+  renderDeck();
+  renderCards();
+  notify('New deck started');
+});
+
+// ─── INIT ──────────────────────────────────────────────────────────────────
+renderDeck();
+renderManaCurve();
+autoLoadCards();
+</script>
+</body>
+</html>
