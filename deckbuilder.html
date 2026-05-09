@@ -23,13 +23,24 @@
     --blue:      #2980b9;
     --green:     #27ae60;
     --purple:    #8e44ad;
-    --orange:    #e67e22;
 
     --rarity-free:      #aaa;
     --rarity-common:    #e0e0e0;
     --rarity-rare:      #4a90d9;
     --rarity-epic:      #b45ee4;
     --rarity-legendary: #f0a033;
+
+    /* Class accent colors */
+    --cls-DRUID:       #c67c2e;
+    --cls-HUNTER:      #4a8f3f;
+    --cls-MAGE:        #69b2e8;
+    --cls-PALADIN:     #e8d860;
+    --cls-PRIEST:      #e8e8e8;
+    --cls-ROGUE:       #b0b0b0;
+    --cls-SHAMAN:      #5b7fd4;
+    --cls-WARLOCK:     #9b59b6;
+    --cls-WARRIOR:     #c0392b;
+    --cls-NEUTRAL:     #8a7550;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,7 +80,6 @@
     letter-spacing: 0.12em;
     text-shadow: 0 0 20px rgba(201,168,76,0.4);
   }
-  .logo span { color: var(--text-dim); font-weight: 400; font-size: 0.8em; }
 
   .header-actions { display: flex; gap: 10px; align-items: center; }
 
@@ -99,6 +109,13 @@
   }
   .btn-gold:hover { box-shadow: 0 0 20px rgba(201,168,76,0.4); transform: translateY(-1px); }
 
+  .btn-danger {
+    background: transparent;
+    color: #c0392b;
+    border-color: #7a1a1a;
+  }
+  .btn-danger:hover { background: rgba(192,57,43,0.1); border-color: #c0392b; }
+
   /* ─── LAYOUT ──────────────────────────────────── */
   .layout {
     display: grid;
@@ -114,11 +131,15 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    overflow-y: auto;
   }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
 
   .sidebar-section {
     padding: 14px 16px;
     border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
   }
 
   .section-label {
@@ -155,6 +176,40 @@
     font-size: 1rem;
     pointer-events: none;
   }
+
+  /* Active class banner */
+  .active-class-banner {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(201,168,76,0.06);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .active-class-banner.visible { display: flex; }
+  .active-class-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .active-class-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    flex: 1;
+  }
+  .clear-class-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: color 0.15s;
+    font-family: 'Cinzel', serif;
+  }
+  .clear-class-btn:hover { color: var(--gold); }
 
   /* Mana filter */
   .mana-filter {
@@ -230,11 +285,7 @@
 
   .load-btn-wrap {
     padding: 14px 16px;
-  }
-  #loadBtn {
-    width: 100%;
-    text-align: center;
-    font-size: 0.68rem;
+    flex-shrink: 0;
   }
   #fileInput { display: none; }
 
@@ -243,6 +294,7 @@
     font-size: 0.8rem;
     color: var(--text-dim);
     font-style: italic;
+    flex-shrink: 0;
   }
 
   /* ─── CARD GRID ───────────────────────────────── */
@@ -299,7 +351,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
     display: block;
     transition: transform 0.3s;
   }
@@ -363,17 +414,45 @@
     flex-shrink: 0;
   }
 
-  .rarity-dot {
-    width: 6px;
-    height: 6px;
+  .attack-gem {
+    background: radial-gradient(circle at 40% 35%, #aa751a, #e0a030);
+    border: 1px solid #e0a030;
     border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
   }
-  .rarity-FREE    { background: var(--rarity-free); }
-  .rarity-COMMON  { background: var(--rarity-common); }
-  .rarity-RARE    { background: var(--rarity-rare); }
-  .rarity-EPIC    { background: var(--rarity-epic); }
-  .rarity-LEGENDARY { background: var(--rarity-legendary); }
+
+  .health-gem {
+    background: radial-gradient(circle at 40% 35%, #7a1a1a, #e05050);
+    border: 1px solid #e05050;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-type-rarity {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    font-style: italic;
+    flex: 1;
+    text-align: left;
+  }
 
   .card-type-tag {
     font-size: 0.55rem;
@@ -383,7 +462,6 @@
     text-align: right;
   }
 
-  /* In-deck badge */
   .in-deck-badge {
     position: absolute;
     top: 5px;
@@ -418,10 +496,19 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
+  }
+
+  /* Class accent stripe on deck panel */
+  .deck-class-stripe {
+    height: 3px;
+    flex-shrink: 0;
+    background: var(--gold-dim);
+    transition: background 0.4s;
   }
 
   .deck-header {
-    padding: 14px 16px 12px;
+    padding: 12px 16px 10px;
     border-bottom: 1px solid var(--border);
     flex-shrink: 0;
   }
@@ -433,6 +520,20 @@
     margin-bottom: 8px;
   }
 
+  .deck-class-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+    opacity: 0.8;
+    transition: color 0.3s, border-color 0.3s;
+    color: var(--text-dim);
+  }
+
   .deck-name-input {
     background: transparent;
     border: none;
@@ -441,13 +542,20 @@
     font-family: 'Cinzel', serif;
     font-size: 0.85rem;
     font-weight: 600;
-    width: 160px;
+    width: 140px;
     outline: none;
     padding-bottom: 2px;
     letter-spacing: 0.05em;
   }
   .deck-name-input:focus { border-bottom-color: var(--gold); }
   .deck-name-input::placeholder { color: var(--text-dim); font-weight: 400; }
+
+  .deck-count-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
 
   .deck-count {
     font-family: 'Cinzel', serif;
@@ -581,57 +689,47 @@
   .deck-entry:hover .deck-remove-btn { opacity: 1; }
   .deck-remove-btn:hover { color: #e74c3c; }
 
-  /* Separator by class */
-  .deck-class-sep {
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    padding: 6px 14px 3px;
-  }
-
   .deck-footer {
     border-top: 1px solid var(--border);
-    padding: 12px 14px;
+    padding: 10px 14px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
     flex-shrink: 0;
   }
 
   .deck-footer-row { display: flex; gap: 8px; }
-  #exportBtn, #clearBtn {
+  #saveDeckBtn, #exportBtn, #clearBtn {
     flex: 1;
-    font-size: 0.62rem;
-    padding: 8px;
+    font-size: 0.6rem;
+    padding: 7px 6px;
     text-align: center;
   }
 
-  /* ─── MODAL ───────────────────────────────────── */
+  /* ─── CLASS CHOOSER MODAL ──────────────────────── */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.88);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
   }
   .modal-overlay.open { display: flex; }
 
   .modal {
     background: var(--bg-panel);
     border: 1px solid var(--border-hi);
-    border-radius: 6px;
-    width: 480px;
-    max-width: 95vw;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    border-radius: 8px;
+    width: 540px;
+    max-width: 96vw;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,168,76,0.08);
   }
 
   .modal-header {
-    padding: 16px 20px;
+    padding: 18px 22px;
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -639,27 +737,70 @@
   }
   .modal-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--gold-light);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
+  }
+  .modal-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 2px;
   }
   .modal-close {
     background: none;
     border: none;
     color: var(--text-dim);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
     line-height: 1;
     transition: color 0.15s;
+    padding: 2px 6px;
   }
   .modal-close:hover { color: var(--text); }
 
-  .modal-body { padding: 20px; }
+  .modal-body { padding: 22px; }
 
+  /* Class selection grid */
+  .class-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .class-choose-btn {
+    padding: 14px 8px;
+    border-radius: 5px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .class-choose-btn:hover {
+    border-color: var(--hover-color, var(--gold-dim));
+    color: var(--hover-color, var(--gold));
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .class-choose-icon { font-size: 1.6rem; line-height: 1; }
+
+  /* Export / generic modal body */
   .export-textarea {
     width: 100%;
-    height: 250px;
+    height: 240px;
     background: var(--bg-deep);
     border: 1px solid var(--border);
     border-radius: 3px;
@@ -677,12 +818,66 @@
   .export-textarea::-webkit-scrollbar-thumb { background: var(--border-hi); }
 
   .modal-footer {
-    padding: 14px 20px;
+    padding: 14px 22px;
     border-top: 1px solid var(--border);
     display: flex;
     gap: 10px;
     justify-content: flex-end;
   }
+
+  /* ─── SAVED DECKS MODAL ───────────────────────── */
+  #savedDecksModal .modal { width: 560px; }
+
+  .saved-deck-list { display: flex; flex-direction: column; gap: 8px; max-height: 380px; overflow-y: auto; }
+  .saved-deck-list::-webkit-scrollbar { width: 4px; }
+  .saved-deck-list::-webkit-scrollbar-thumb { background: var(--border-hi); }
+
+  .saved-deck-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.15s;
+  }
+  .saved-deck-item:hover { border-color: var(--border-hi); }
+
+  .saved-deck-class-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .saved-deck-info { flex: 1; min-width: 0; }
+  .saved-deck-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .saved-deck-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .saved-deck-actions { display: flex; gap: 6px; }
+  .saved-deck-actions .btn { padding: 5px 12px; font-size: 0.58rem; }
+
+  .no-saved-decks {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  .no-saved-decks .big-icon { font-size: 2.5rem; opacity: 0.3; margin-bottom: 10px; }
 
   /* ─── TOOLTIP ─────────────────────────────────── */
   .tooltip {
@@ -707,11 +902,7 @@
     color: var(--gold-light);
     margin-bottom: 4px;
   }
-  .tooltip-text {
-    font-size: 0.82rem;
-    color: var(--text);
-    line-height: 1.4;
-  }
+  .tooltip-text { font-size: 0.82rem; color: var(--text); line-height: 1.4; }
   .tooltip-stats {
     display: flex;
     gap: 8px;
@@ -720,8 +911,6 @@
     font-size: 0.65rem;
     color: var(--text-dim);
   }
-  .tooltip-atk { color: #e0a030; }
-  .tooltip-hp  { color: #e05050; }
 
   /* ─── LOADING ─────────────────────────────────── */
   .loading-overlay {
@@ -776,6 +965,7 @@
     border-bottom: 1px solid var(--border);
     background: var(--bg-panel);
     flex-shrink: 0;
+    align-items: center;
   }
   .sort-btn {
     font-family: 'Cinzel', serif;
@@ -798,18 +988,37 @@
     color: var(--text-dim);
     font-style: italic;
     margin-left: auto;
-    align-self: center;
   }
+
+  /* ─── CONFIRM DIALOG ──────────────────────────── */
+  .confirm-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-hi);
+    border-radius: 6px;
+    padding: 24px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  }
+  .confirm-box p {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .confirm-box strong { color: var(--gold-light); }
+  .confirm-actions { display: flex; gap: 10px; justify-content: center; }
 </style>
 </head>
 <body>
 
 <!-- ─── HEADER ─────────────────────────── -->
 <header>
-  <div class="logo">HSClassic <span style="font-size:0.65em;margin-left:6px;">DECK BUILDER</span></div>
+  <div class="logo">HSClassic <span style="font-size:0.65em;margin-left:6px;color:var(--text-dim);font-weight:400;">DECK BUILDER</span></div>
   <div class="header-actions">
-    <button class="btn btn-ghost" id="newDeckBtn">New Deck</button>
-    <button class="btn btn-gold" id="exportBtnTop">Export Deck</button>
+    <button class="btn btn-ghost" id="defaultDecksBtn">🗂️ Deck Browser</button>
+    <button class="btn btn-ghost" id="savedDecksBtn">📚 My Decks</button>
+    <button class="btn btn-ghost" id="newDeckBtn">+ New Deck</button>
   </div>
 </header>
 
@@ -821,6 +1030,12 @@
     <div class="load-btn-wrap">
       <button class="btn btn-gold" id="loadBtn" style="width:100%;text-align:center;font-size:0.68rem;">⊕ Load Card JSON</button>
       <input type="file" id="fileInput" accept=".json">
+    </div>
+
+    <!-- Active class banner -->
+    <div class="active-class-banner" id="activeClassBanner">
+      <div class="active-class-dot" id="activeClassDot"></div>
+      <div class="active-class-label" id="activeClassLabel">Class</div>
     </div>
 
     <div class="sidebar-section">
@@ -855,8 +1070,6 @@
         <button class="pill" data-type="MINION">Minion</button>
         <button class="pill" data-type="SPELL">Spell</button>
         <button class="pill" data-type="WEAPON">Weapon</button>
-        <button class="pill" data-type="HERO">Hero</button>
-        <button class="pill" data-type="LOCATION">Location</button>
       </div>
     </div>
 
@@ -877,7 +1090,7 @@
   <!-- CARD BROWSER -->
   <main class="card-browser">
     <div class="sort-bar">
-      <span class="section-label" style="margin:0;align-self:center;">Sort:</span>
+      <span class="section-label" style="margin:0;">Sort:</span>
       <button class="sort-btn active" data-sort="mana">Mana</button>
       <button class="sort-btn" data-sort="name">Name</button>
       <button class="sort-btn" data-sort="attack">Attack</button>
@@ -896,25 +1109,44 @@
 
   <!-- DECK PANEL -->
   <aside class="deck-panel">
+    <div class="deck-class-stripe" id="deckClassStripe"></div>
     <div class="deck-header">
       <div class="deck-title-row">
         <input class="deck-name-input" id="deckNameInput" placeholder="Deck Name" maxlength="40" value="My Deck">
+        <div class="deck-class-badge" id="deckClassBadge">No Class</div>
+      </div>
+      <div class="deck-count-row">
         <div class="deck-count"><span class="num" id="deckCountNum">0</span><span class="denom">/30</span></div>
       </div>
-      <div class="mana-curve" id="manaCurve">
-        <!-- Columns 0–7+ populated by JS -->
-      </div>
+      <div class="mana-curve" id="manaCurve"></div>
     </div>
 
     <div class="deck-scroll" id="deckList"></div>
 
     <div class="deck-footer">
       <div class="deck-footer-row">
-        <button class="btn btn-gold" id="exportBtn">Export</button>
+        <button class="btn btn-gold" id="saveDeckBtn">💾 Save</button>
+        <button class="btn btn-ghost" id="exportBtn">Export</button>
         <button class="btn btn-ghost" id="clearBtn">Clear</button>
       </div>
     </div>
   </aside>
+</div>
+
+<!-- ─── CLASS CHOOSER MODAL ─────────────── -->
+<div class="modal-overlay" id="classChooserModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Choose Your Class</div>
+        <div class="modal-subtitle">Your deck will be filtered to class + neutral cards</div>
+      </div>
+      <button class="modal-close" id="classModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="class-choose-grid" id="classChooseGrid"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ─── EXPORT MODAL ─────────────────────── -->
@@ -934,12 +1166,49 @@
   </div>
 </div>
 
+<!-- ─── SAVED DECKS MODAL ─────────────────── -->
+<div class="modal-overlay" id="savedDecksModal">
+  <div class="modal" style="width:560px">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">My Saved Decks</div>
+        <div class="modal-subtitle">Click a deck to load it into the builder</div>
+      </div>
+      <button class="modal-close" id="savedModalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="saved-deck-list" id="savedDeckList"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="savedModalClose2">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONFIRM MODAL ─────────────────────── -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="confirm-box">
+    <p id="confirmMsg">Are you sure?</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" id="confirmCancel">Cancel</button>
+      <button class="btn btn-danger" id="confirmOk">Delete</button>
+    </div>
+  </div>
+</div>
+
 <!-- ─── TOOLTIP ──────────────────────────── -->
 <div class="tooltip" id="tooltip">
   <div class="tooltip-inner">
+  <div style="display:flex; align-items:center; gap:8px;">
+    <div class="mana-gem" id="ttMana"></div>
     <div class="tooltip-name" id="ttName"></div>
+  </div>
     <div class="tooltip-text" id="ttText"></div>
     <div class="tooltip-stats" id="ttStats"></div>
+    <div class="card-meta">
+      <div class="card-type-rarity" id="ttRarity"></div>
+      <div class="card-type-tag" id="ttTag"></div>
+    </div>
   </div>
 </div>
 
@@ -953,10 +1222,32 @@
 <div class="notif" id="notif"></div>
 
 <script>
-// ─── STATE ─────────────────────────────────────────────────────────────────
+// ─── CLASS DATA ─────────────────────────────────────────────────────────────
+const CLASS_DISPLAY = {
+  DRUID:'Druid', HUNTER:'Hunter', MAGE:'Mage',
+  PALADIN:'Paladin', PRIEST:'Priest', ROGUE:'Rogue',
+  SHAMAN:'Shaman', WARLOCK:'Warlock', WARRIOR:'Warrior',
+  NEUTRAL:'Neutral'
+};
+const CLASS_ICONS = {
+  DRUID:'🌿', HUNTER:'🏹', MAGE:'🔮',
+  PALADIN:'⚔️', PRIEST:'✝️', ROGUE:'🗝️',
+  SHAMAN:'⚡', WARLOCK:'👁️', WARRIOR:'🛡️',
+  NEUTRAL:'⚖️'
+};
+const CLASS_COLORS = {
+  DRUID:'#c67c2e', HUNTER:'#4a8f3f', MAGE:'#69b2e8',
+  PALADIN:'#e8d860', PRIEST:'#e8e8e8', ROGUE:'#b0b0b0',
+  SHAMAN:'#5b7fd4', WARLOCK:'#9b59b6', WARRIOR:'#c0392b',
+  NEUTRAL:'#8a7550'
+};
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
 let allCards = [];
 let filteredCards = [];
 let deck = []; // [{card, count}]
+let deckClass = null; // chosen hero class for this deck
+let currentDeckId = null; // localStorage ID of the currently loaded deck
 
 const filters = {
   search: '',
@@ -967,18 +1258,238 @@ const filters = {
 };
 let sortBy = 'mana';
 
-// ─── HELPERS ───────────────────────────────────────────────────────────────
+// ─── HELPERS ────────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 const imgUrl = id => `https://art.hearthstonejson.com/v1/render/latest/enUS/512x/${id}.png`;
-
+let notifTimer;
 function notify(msg) {
   const n = $('notif');
   n.textContent = msg;
   n.classList.add('show');
-  setTimeout(() => n.classList.remove('show'), 2000);
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => n.classList.remove('show'), 2400);
 }
 
-// ─── LOAD JSON ─────────────────────────────────────────────────────────────
+// ─── LOCAL STORAGE HELPERS ──────────────────────────────────────────────────
+const STORAGE_KEY = 'hsclassic_saved_decks';
+
+function getSavedDecks() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch { return []; }
+}
+
+function setSavedDecks(decks) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(decks)); }
+  catch (e) { notify('Storage error — could not save'); }
+}
+
+function saveDeck() {
+  if (deck.length === 0) { notify('Nothing to save — deck is empty'); return; }
+  const name = $('deckNameInput').value.trim() || 'My Deck';
+  const decks = getSavedDecks();
+
+  // Minimal card snapshot (only what we need to restore the deck)
+  const cardSnapshot = deck.map(({ card, count }) => ({
+    count,
+    card: {
+      id: card.id, name: card.name, cost: card.cost, type: card.type,
+      rarity: card.rarity, cardClass: card.cardClass,
+      attack: card.attack, health: card.health, durability: card.durability,
+      text: card.text
+    }
+  }));
+
+  if (currentDeckId) {
+    // Update existing
+    const idx = decks.findIndex(d => d.id === currentDeckId);
+    if (idx !== -1) {
+      decks[idx] = { ...decks[idx], name, class: deckClass, cards: cardSnapshot, updated: Date.now() };
+      setSavedDecks(decks);
+      notify(`✓ Deck "${name}" updated`);
+      return;
+    }
+  }
+
+  // New save
+  const id = 'deck_' + Date.now();
+  currentDeckId = id;
+  decks.unshift({ id, name, class: deckClass, cards: cardSnapshot, created: Date.now() });
+  setSavedDecks(decks);
+  notify(`✓ Deck "${name}" saved`);
+}
+
+function loadDeckFromSave(saved) {
+  $('savedDecksModal').classList.remove('open');
+  deck = saved.cards.map(({ card, count }) => ({ card, count }));
+  $('deckNameInput').value = saved.name || 'My Deck';
+  deckClass = saved.class || null;
+  currentDeckId = saved.id;
+
+  filters.classes.clear();
+  filters.classes.add(saved.class);
+  filters.classes.add('NEUTRAL');
+
+  // Reflect in sidebar class buttons
+  document.querySelectorAll('#classFilter .class-btn').forEach(btn => {
+    const active = filters.classes.has(btn.dataset.class);
+    btn.classList.toggle('active', active);
+  });
+  applyFilters();
+
+  applyDeckClassToUI();
+  renderDeck();
+  renderCards();
+  notify(`✓ Loaded "${saved.name}"`);
+}
+
+function deleteSavedDeck(id) {
+  const decks = getSavedDecks().filter(d => d.id !== id);
+  setSavedDecks(decks);
+  if (currentDeckId === id) currentDeckId = null;
+  renderSavedDecksList();
+  notify('Deck deleted');
+}
+
+// ─── SAVED DECKS MODAL ──────────────────────────────────────────────────────
+function renderSavedDecksList() {
+  const decks = getSavedDecks();
+  const list = $('savedDeckList');
+  if (decks.length === 0) {
+    list.innerHTML = `<div class="no-saved-decks"><div class="big-icon">📭</div><p>No saved decks yet.<br>Build something and hit Save!</p></div>`;
+    return;
+  }
+  list.innerHTML = '';
+  decks.forEach(d => {
+    const total = d.cards.reduce((s, e) => s + e.count, 0);
+    const color = d.class ? (CLASS_COLORS[d.class] || '#8a7550') : '#8a7550';
+    const clsLabel = d.class ? (CLASS_DISPLAY[d.class] || d.class) : 'No Class';
+    const date = new Date(d.created || d.updated || Date.now()).toLocaleDateString();
+    const el = document.createElement('div');
+    el.className = 'saved-deck-item';
+    el.innerHTML = `
+      <div class="saved-deck-class-dot" style="background:${color}"></div>
+      <div class="saved-deck-info">
+        <div class="saved-deck-name">${d.name}</div>
+        <div class="saved-deck-meta">${clsLabel} · ${total}/30 cards · ${date}</div>
+      </div>
+      <div class="saved-deck-actions">
+        <button class="btn btn-ghost" data-load="${d.id}">Load</button>
+        <button class="btn btn-danger" data-del="${d.id}">Delete</button>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+
+  list.querySelectorAll('[data-load]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = getSavedDecks().find(x => x.id === btn.dataset.load);
+      if (d) loadDeckFromSave(d);
+    });
+  });
+
+  list.querySelectorAll('[data-del]').forEach(btn => {
+    btn.addEventListener('click', () => confirmDelete(btn.dataset.del));
+  });
+}
+
+$('savedDecksBtn').addEventListener('click', () => {
+  renderSavedDecksList();
+  $('savedDecksModal').classList.add('open');
+});
+$('savedModalClose').addEventListener('click', () => $('savedDecksModal').classList.remove('open'));
+$('savedModalClose2').addEventListener('click', () => $('savedDecksModal').classList.remove('open'));
+$('savedDecksModal').addEventListener('click', e => { if (e.target === $('savedDecksModal')) $('savedDecksModal').classList.remove('open'); });
+
+// ─── CONFIRM DIALOG ──────────────────────────────────────────────────────────
+let _confirmResolve = null;
+function confirm(msg) {
+  return new Promise(resolve => {
+    $('confirmMsg').innerHTML = msg;
+    $('confirmModal').classList.add('open');
+    _confirmResolve = resolve;
+  });
+}
+$('confirmOk').addEventListener('click', () => { $('confirmModal').classList.remove('open'); if (_confirmResolve) _confirmResolve(true); });
+$('confirmCancel').addEventListener('click', () => { $('confirmModal').classList.remove('open'); if (_confirmResolve) _confirmResolve(false); });
+
+async function confirmDelete(id) {
+  const d = getSavedDecks().find(x => x.id === id);
+  if (!d) return;
+  const ok = await confirm(`Delete <strong>"${d.name}"</strong>?<br><span style="font-size:0.85rem;color:var(--text-dim);font-style:italic">This cannot be undone.</span>`);
+  if (ok) deleteSavedDeck(id);
+}
+
+// ─── CLASS CHOOSER ───────────────────────────────────────────────────────────
+const PLAYABLE_CLASSES = ['DRUID','HUNTER','MAGE','PALADIN','PRIEST','ROGUE','SHAMAN','WARLOCK','WARRIOR'];
+
+function buildClassChooserGrid() {
+  const grid = $('classChooseGrid');
+  grid.innerHTML = '';
+  PLAYABLE_CLASSES.forEach(cls => {
+    const btn = document.createElement('button');
+    btn.className = 'class-choose-btn';
+    const color = CLASS_COLORS[cls] || '#8a7550';
+    btn.style.setProperty('--hover-color', color);
+    btn.innerHTML = `<span class="class-choose-icon">${CLASS_ICONS[cls] || '?'}</span><span>${CLASS_DISPLAY[cls] || cls}</span>`;
+    btn.addEventListener('click', () => {
+      $('classChooserModal').classList.remove('open');
+      startNewDeckWithClass(cls);
+    });
+    grid.appendChild(btn);
+  });
+}
+
+function startNewDeckWithClass(cls) {
+  deck = [];
+  currentDeckId = null;
+  deckClass = cls;
+  $('deckNameInput').value = `${CLASS_DISPLAY[cls] || cls} Deck`;
+
+  // Auto-filter sidebar to show chosen class + neutral
+  filters.classes.clear();
+  filters.classes.add(cls);
+  filters.classes.add('NEUTRAL');
+
+  // Reflect in sidebar class buttons
+  document.querySelectorAll('#classFilter .class-btn').forEach(btn => {
+    const active = filters.classes.has(btn.dataset.class);
+    btn.classList.toggle('active', active);
+  });
+
+  applyDeckClassToUI();
+  applyFilters();
+  renderDeck();
+  notify(`New ${CLASS_DISPLAY[cls]} deck started`);
+}
+
+function applyDeckClassToUI() {
+  const color = deckClass ? (CLASS_COLORS[deckClass] || '#8a7550') : '#7a5f28';
+  const label = deckClass ? (CLASS_DISPLAY[deckClass] || deckClass) : 'No Class';
+
+  $('deckClassStripe').style.background = color;
+  $('deckClassBadge').textContent = label;
+  $('deckClassBadge').style.color = color;
+  $('deckClassBadge').style.borderColor = color;
+
+  // Active class banner in sidebar
+  if (deckClass && deckClass !== 'NEUTRAL') {
+    $('activeClassBanner').classList.add('visible');
+    $('activeClassDot').style.background = color;
+    $('activeClassLabel').textContent = `${CLASS_DISPLAY[deckClass] || deckClass} + Neutral`;
+    $('activeClassLabel').style.color = color;
+  } else {
+    $('activeClassBanner').classList.remove('visible');
+  }
+}
+
+$('newDeckBtn').addEventListener('click', () => {
+  buildClassChooserGrid();
+  $('classChooserModal').classList.add('open');
+});
+$('classModalClose').addEventListener('click', () => $('classChooserModal').classList.remove('open'));
+$('classChooserModal').addEventListener('click', e => { if (e.target === $('classChooserModal')) $('classChooserModal').classList.remove('open'); });
+
+// ─── LOAD JSON ───────────────────────────────────────────────────────────────
 function parseAndLoadCards(data) {
   let cards;
   if (Array.isArray(data)) cards = data;
@@ -988,7 +1499,7 @@ function parseAndLoadCards(data) {
 
   allCards = cards.filter(c =>
     c.id && c.name && c.cost !== undefined &&
-    ['MINION','SPELL','WEAPON','HERO','LOCATION'].includes(c.type) &&
+    ['MINION','SPELL','WEAPON'].includes(c.type) &&
     c.set !== 'HERO_SKINS' && c.set !== 'TAVERN_BRAWL'
   );
 
@@ -997,7 +1508,6 @@ function parseAndLoadCards(data) {
   notify(`✓ Loaded ${allCards.length.toLocaleString()} cards`);
 }
 
-// Auto-fetch cards.json from the same directory on page load
 async function autoLoadCards() {
   $('loadingOverlay').classList.add('show');
   try {
@@ -1012,7 +1522,6 @@ async function autoLoadCards() {
   $('loadingOverlay').classList.remove('show');
 }
 
-// Manual file picker fallback
 $('loadBtn').addEventListener('click', () => $('fileInput').click());
 $('fileInput').addEventListener('change', e => {
   const file = e.target.files[0];
@@ -1020,25 +1529,15 @@ $('fileInput').addEventListener('change', e => {
   $('loadingOverlay').classList.add('show');
   const reader = new FileReader();
   reader.onload = ev => {
-    try {
-      parseAndLoadCards(JSON.parse(ev.target.result));
-    } catch(err) {
-      notify('Error reading JSON file');
-      console.error(err);
-    }
+    try { parseAndLoadCards(JSON.parse(ev.target.result)); }
+    catch(err) { notify('Error reading JSON file'); }
     $('loadingOverlay').classList.remove('show');
     e.target.value = '';
   };
   reader.readAsText(file);
 });
 
-// ─── CLASS FILTER POPULATION ───────────────────────────────────────────────
-const CLASS_DISPLAY = {
-  DEATHKNIGHT:'Death Knight', DEMONHUNTER:'Demon Hunter', DRUID:'Druid',
-  HUNTER:'Hunter', MAGE:'Mage', NEUTRAL:'Neutral', PALADIN:'Paladin',
-  PRIEST:'Priest', ROGUE:'Rogue', SHAMAN:'Shaman', WARLOCK:'Warlock', WARRIOR:'Warrior'
-};
-
+// ─── CLASS FILTER POPULATION ─────────────────────────────────────────────────
 function populateClassFilter() {
   const classes = [...new Set(allCards.map(c => c.cardClass || 'NEUTRAL'))].sort();
   const wrap = $('classFilter');
@@ -1048,6 +1547,7 @@ function populateClassFilter() {
     btn.className = 'class-btn';
     btn.dataset.class = cls;
     btn.textContent = CLASS_DISPLAY[cls] || cls;
+    if (filters.classes.has(cls)) btn.classList.add('active');
     btn.addEventListener('click', () => {
       btn.classList.toggle('active');
       if (filters.classes.has(cls)) filters.classes.delete(cls);
@@ -1058,7 +1558,7 @@ function populateClassFilter() {
   });
 }
 
-// ─── FILTER EVENT LISTENERS ────────────────────────────────────────────────
+// ─── FILTER EVENT LISTENERS ──────────────────────────────────────────────────
 $('searchInput').addEventListener('input', e => {
   filters.search = e.target.value.toLowerCase().trim();
   applyFilters();
@@ -1103,7 +1603,7 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
   });
 });
 
-// ─── APPLY FILTERS ─────────────────────────────────────────────────────────
+// ─── APPLY FILTERS ───────────────────────────────────────────────────────────
 function applyFilters() {
   filteredCards = allCards.filter(c => {
     if (filters.search) {
@@ -1132,7 +1632,7 @@ function applyFilters() {
   renderCards();
 }
 
-// ─── RENDER CARDS ──────────────────────────────────────────────────────────
+// ─── RENDER CARDS ────────────────────────────────────────────────────────────
 function getSortVal(c) {
   if (sortBy === 'mana') return (c.cost || 0) * 1e6 + (c.name||'').charCodeAt(0);
   if (sortBy === 'name') return c.name || '';
@@ -1163,7 +1663,6 @@ function renderCards() {
     return;
   }
 
-  // Limit render to 500 for performance
   const visible = sorted.slice(0, 500);
   if (sorted.length > 500) $('resultsInfo').textContent += ' (showing 500)';
 
@@ -1189,11 +1688,6 @@ function renderCards() {
       </div>
       <div class="card-footer">
         <div class="card-name">${card.name}</div>
-        <div class="card-meta">
-          <div class="mana-gem">${card.cost ?? '?'}</div>
-          <div class="rarity-dot rarity-${card.rarity || 'FREE'}"></div>
-          <div class="card-type-tag">${(card.type||'').toLowerCase()}</div>
-        </div>
       </div>
     `;
 
@@ -1201,40 +1695,36 @@ function renderCards() {
     el.addEventListener('mouseenter', ev => showTooltip(card, ev));
     el.addEventListener('mousemove', ev => positionTooltip(ev));
     el.addEventListener('mouseleave', hideTooltip);
-
     grid.appendChild(el);
   });
 }
 
-// ─── TOOLTIP ───────────────────────────────────────────────────────────────
+// ─── TOOLTIP ─────────────────────────────────────────────────────────────────
 function stripTags(html) {
   return (html||'').replace(/<[^>]+>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\[x\]/g,'');
 }
-
 function showTooltip(card, ev) {
+  $('ttMana').textContent = card.cost;
   $('ttName').textContent = card.name;
+  $('ttRarity').textContent = card.rarity;
+  $('ttTag').textContent = card.type;
   $('ttText').textContent = stripTags(card.text) || '(No text)';
   const stats = [];
-  if (card.attack !== undefined) stats.push(`<span class="tooltip-atk">⚔ ${card.attack}</span>`);
-  if (card.health !== undefined) stats.push(`<span class="tooltip-hp">♥ ${card.health}</span>`);
-  if (card.durability !== undefined) stats.push(`<span class="tooltip-hp">🛡 ${card.durability}</span>`);
+  if (card.attack !== undefined) stats.push(`<div class="attack-gem">${card.attack}</div>`);
+  if (card.health !== undefined) stats.push(`<div class="health-gem">${card.health}</div>`);
   $('ttStats').innerHTML = stats.join(' ');
   $('tooltip').classList.add('visible');
   positionTooltip(ev);
 }
-
 function positionTooltip(ev) {
   const tt = $('tooltip');
-  const x = ev.clientX + 15;
-  const y = ev.clientY - 10;
-  const maxX = window.innerWidth - 220;
-  const maxY = window.innerHeight - 200;
-  tt.style.left = Math.min(x, maxX) + 'px';
-  tt.style.top = Math.min(y, maxY) + 'px';
+  const x = ev.clientX + 15, y = ev.clientY - 10;
+  tt.style.left = Math.min(x, window.innerWidth - 220) + 'px';
+  tt.style.top = Math.min(y, window.innerHeight - 200) + 'px';
 }
 function hideTooltip() { $('tooltip').classList.remove('visible'); }
 
-// ─── DECK LOGIC ────────────────────────────────────────────────────────────
+// ─── DECK LOGIC ───────────────────────────────────────────────────────────────
 function addCardToDeck(card) {
   const total = deck.reduce((s, e) => s + e.count, 0);
   const entry = deck.find(e => e.card.id === card.id);
@@ -1247,7 +1737,7 @@ function addCardToDeck(card) {
   else deck.push({ card, count: 1 });
 
   renderDeck();
-  renderCards(); // update badges
+  renderCards();
 }
 
 function removeFromDeck(cardId) {
@@ -1264,7 +1754,6 @@ function renderDeck() {
   const total = deck.reduce((s, e) => s + e.count, 0);
   $('deckCountNum').textContent = total;
 
-  // Sort by mana then name
   const sorted = [...deck].sort((a, b) => {
     const ca = a.card, cb = b.card;
     return (ca.cost||0) - (cb.cost||0) || (ca.name||'').localeCompare(cb.name||'');
@@ -1287,7 +1776,6 @@ function renderDeck() {
     list.appendChild(el);
   });
 
-  // Remove buttons
   list.querySelectorAll('.deck-remove-btn').forEach(btn => {
     btn.addEventListener('click', e => { e.stopPropagation(); removeFromDeck(btn.dataset.id); });
   });
@@ -1322,15 +1810,18 @@ function renderManaCurve() {
   });
 }
 
-// ─── EXPORT ────────────────────────────────────────────────────────────────
+// ─── EXPORT ───────────────────────────────────────────────────────────────────
 function buildExportText() {
   const name = $('deckNameInput').value.trim() || 'My Deck';
-  const lines = [`// ${name}`];
+  const cls = deckClass ? `# Class: ${CLASS_DISPLAY[deckClass] || deckClass}` : '';
+  const lines = [`### ${name}`, cls].filter(Boolean);
   const sorted = [...deck].sort((a, b) =>
     (a.card.cost||0) - (b.card.cost||0) || (a.card.name||'').localeCompare(b.card.name||''));
   sorted.forEach(({card, count}) => {
-    lines.push(`${count} ${card.name} (HSCLASSIC)`);
+    lines.push(`${count}x ${card.name}`);
   });
+  const total = deck.reduce((s,e) => s+e.count, 0);
+  lines.push(`\n# ${total}/30 cards`);
   return lines.join('\n');
 }
 
@@ -1341,33 +1832,28 @@ function openExport() {
 }
 
 $('exportBtn').addEventListener('click', openExport);
-$('exportBtnTop').addEventListener('click', openExport);
 $('modalClose').addEventListener('click', () => $('exportModal').classList.remove('open'));
 $('modalClose2').addEventListener('click', () => $('exportModal').classList.remove('open'));
 $('exportModal').addEventListener('click', e => { if (e.target === $('exportModal')) $('exportModal').classList.remove('open'); });
-
 $('copyExportBtn').addEventListener('click', () => {
   navigator.clipboard.writeText($('exportText').value).then(() => notify('✓ Copied to clipboard!'));
 });
 
-// ─── CONTROLS ──────────────────────────────────────────────────────────────
+// ─── SAVE BUTTON ──────────────────────────────────────────────────────────────
+$('saveDeckBtn').addEventListener('click', saveDeck);
+
+// ─── CONTROLS ─────────────────────────────────────────────────────────────────
 $('clearBtn').addEventListener('click', () => {
   if (deck.length === 0) return;
   deck = [];
+  currentDeckId = null;
   renderDeck();
   renderCards();
   notify('Deck cleared');
 });
 
-$('newDeckBtn').addEventListener('click', () => {
-  deck = [];
-  $('deckNameInput').value = 'My Deck';
-  renderDeck();
-  renderCards();
-  notify('New deck started');
-});
-
-// ─── INIT ──────────────────────────────────────────────────────────────────
+// ─── INIT ──────────────────────────────────────────────────────────────────────
+applyDeckClassToUI();
 renderDeck();
 renderManaCurve();
 autoLoadCards();
