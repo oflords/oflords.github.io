@@ -320,6 +320,47 @@
     gap: 12px;
   }
 
+  /* ─── CLASS GROUP HEADER ──────────────────────── */
+  .class-group-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 2px 4px;
+    margin-top: 6px;
+  }
+  .class-group-header:first-child { margin-top: 0; }
+
+  .class-group-pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .class-group-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .class-group-count {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-left: 2px;
+  }
+
+  .class-group-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-hi) 0%, transparent 100%);
+  }
+
+  /* ─── CARD ITEMS ──────────────────────────────── */
   .card-item {
     border-radius: 6px;
     background: var(--bg-card);
@@ -499,7 +540,7 @@
     position: relative;
   }
 
-  /* Class accent stripe on deck panel */
+    /* Class accent stripe on deck panel */
   .deck-class-stripe {
     height: 3px;
     flex-shrink: 0;
@@ -565,7 +606,7 @@
   .deck-count .num { color: var(--gold-light); }
   .deck-count .denom { color: var(--text-dim); font-size: 0.7em; }
 
-  /* Mana curve bars */
+    /* Mana curve bars */
   .mana-curve {
     display: flex;
     gap: 3px;
@@ -763,7 +804,7 @@
 
   .modal-body { padding: 22px; }
 
-  /* Class selection grid */
+    /* Class selection grid */
   .class-choose-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -957,7 +998,7 @@
   }
   .notif.show { transform: translateX(-50%) translateY(0); }
 
-  /* Sort bar */
+  /* ─── SORT / GROUP BAR ────────────────────────── */
   .sort-bar {
     display: flex;
     gap: 5px;
@@ -966,7 +1007,9 @@
     background: var(--bg-panel);
     flex-shrink: 0;
     align-items: center;
+    flex-wrap: wrap;
   }
+
   .sort-btn {
     font-family: 'Cinzel', serif;
     font-size: 0.58rem;
@@ -982,6 +1025,55 @@
   }
   .sort-btn:hover { color: var(--text); border-color: var(--border); }
   .sort-btn.active { color: var(--gold); border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
+
+  /* Divider between sort and group sections */
+  .sort-bar-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border-hi);
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* Group-by-class toggle */
+  .group-toggle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .group-toggle:hover { color: var(--text); border-color: var(--border-hi); }
+  .group-toggle.active {
+    color: var(--gold);
+    border-color: var(--gold-dim);
+    background: rgba(201,168,76,0.06);
+  }
+
+  /* The little pill indicator inside the toggle */
+  .group-toggle-pip {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: transparent;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .group-toggle.active .group-toggle-pip {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
 
   .results-info {
     font-size: 0.75rem;
@@ -1095,6 +1187,11 @@
       <button class="sort-btn" data-sort="name">Name</button>
       <button class="sort-btn" data-sort="attack">Attack</button>
       <button class="sort-btn" data-sort="health">Health</button>
+      <div class="sort-bar-divider"></div>
+      <button class="group-toggle active" id="groupByClassBtn" title="Group cards by class">
+        <span class="group-toggle-pip"></span>
+        Group by Class
+      </button>
       <span class="results-info" id="resultsInfo"></span>
     </div>
     <div class="card-grid-wrap">
@@ -1242,12 +1339,16 @@ const CLASS_COLORS = {
   NEUTRAL:'#8a7550'
 };
 
+// Canonical display order for classes (deck class first when set, then alpha, neutral last)
+const CLASS_ORDER = ['DRUID','HUNTER','MAGE','PALADIN','PRIEST','ROGUE','SHAMAN','WARLOCK','WARRIOR','NEUTRAL'];
+
 // ─── STATE ──────────────────────────────────────────────────────────────────
 let allCards = [];
 let filteredCards = [];
 let deck = []; // [{card, count}]
 let deckClass = null; // chosen hero class for this deck
 let currentDeckId = null; // localStorage ID of the currently loaded deck
+let groupByClass = true; // ← on by default
 
 const filters = {
   search: '',
@@ -1603,6 +1704,13 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
   });
 });
 
+// ─── GROUP BY CLASS TOGGLE ───────────────────────────────────────────────────
+$('groupByClassBtn').addEventListener('click', () => {
+  groupByClass = !groupByClass;
+  $('groupByClassBtn').classList.toggle('active', groupByClass);
+  renderCards();
+});
+
 // ─── APPLY FILTERS ───────────────────────────────────────────────────────────
 function applyFilters() {
   filteredCards = allCards.filter(c => {
@@ -1632,15 +1740,38 @@ function applyFilters() {
   renderCards();
 }
 
-// ─── RENDER CARDS ────────────────────────────────────────────────────────────
+// ─── SORT HELPERS ─────────────────────────────────────────────────────────────
 function getSortVal(c) {
-  if (sortBy === 'mana') return (c.cost || 0) * 1e6 + (c.name||'').charCodeAt(0);
-  if (sortBy === 'name') return c.name || '';
+  if (sortBy === 'mana')   return (c.cost || 0) * 1e6 + (c.name||'').charCodeAt(0);
+  if (sortBy === 'name')   return c.name || '';
   if (sortBy === 'attack') return -(c.attack || 0);
   if (sortBy === 'health') return -(c.health || 0);
   return 0;
 }
 
+function sortCards(cards) {
+  return [...cards].sort((a, b) => {
+    const va = getSortVal(a), vb = getSortVal(b);
+    return va < vb ? -1 : va > vb ? 1 : 0;
+  });
+}
+
+/**
+ * Returns an ordered list of class keys present in the given card array.
+ * If a deckClass is active it comes first; NEUTRAL always last; rest alphabetical.
+ */
+function getClassOrder(cards) {
+  const present = new Set(cards.map(c => c.cardClass || 'NEUTRAL'));
+  const ordered = CLASS_ORDER.filter(cls => present.has(cls));
+  // Move deckClass to front if set and present
+  if (deckClass && present.has(deckClass)) {
+    const idx = ordered.indexOf(deckClass);
+    if (idx > 0) { ordered.splice(idx, 1); ordered.unshift(deckClass); }
+  }
+  return ordered;
+}
+
+// ─── RENDER CARDS ────────────────────────────────────────────────────────────
 function getDeckCount(card) {
   const entry = deck.find(e => e.card.id === card.id);
   return entry ? entry.count : 0;
@@ -1649,54 +1780,89 @@ function getMaxCopies(card) {
   return card.rarity === 'LEGENDARY' ? 1 : 2;
 }
 
+function makeCardEl(card) {
+  const inDeck   = getDeckCount(card);
+  const maxCopies = getMaxCopies(card);
+  const deckFull  = deck.reduce((s, e) => s + e.count, 0) >= 30;
+  const isMaxed   = inDeck >= maxCopies || (deckFull && inDeck === 0);
+
+  const el = document.createElement('div');
+  el.className = 'card-item' + (isMaxed ? ' maxed' : '');
+  el.innerHTML = `
+    <div class="card-img-wrap">
+      <img src="${imgUrl(card.id)}" alt="${card.name}"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+           loading="lazy">
+      <div class="card-img-placeholder" style="display:none">
+        <span style="font-size:1.5rem">🃏</span>
+        <span>${card.name}</span>
+      </div>
+      ${inDeck > 0 ? `<div class="in-deck-badge">${inDeck}</div>` : ''}
+    </div>
+    <div class="card-footer">
+      <div class="card-name">${card.name}</div>
+    </div>
+  `;
+  el.addEventListener('click', () => addCardToDeck(card));
+  el.addEventListener('mouseenter', ev => showTooltip(card, ev));
+  el.addEventListener('mousemove',  ev => positionTooltip(ev));
+  el.addEventListener('mouseleave', hideTooltip);
+  return el;
+}
+
+function makeGroupHeader(cls, count) {
+  const color = CLASS_COLORS[cls] || '#8a7550';
+  const label = CLASS_DISPLAY[cls] || cls;
+  const icon  = CLASS_ICONS[cls]  || '';
+  const el = document.createElement('div');
+  el.className = 'class-group-header';
+  el.innerHTML = `
+    <div class="class-group-pip" style="background:${color}"></div>
+    <div class="class-group-label" style="color:${color}">${icon} ${label}</div>
+    <div class="class-group-count">${count}</div>
+    <div class="class-group-line" style="background:linear-gradient(90deg,${color}55 0%,transparent 100%)"></div>
+  `;
+  return el;
+}
+
 function renderCards() {
   const grid = $('cardGrid');
-  const sorted = [...filteredCards].sort((a, b) => {
-    const va = getSortVal(a), vb = getSortVal(b);
-    return va < vb ? -1 : va > vb ? 1 : 0;
-  });
+  const total = filteredCards.length;
+  $('resultsInfo').textContent = `${total.toLocaleString()} cards`;
 
-  $('resultsInfo').textContent = `${sorted.length.toLocaleString()} cards`;
-
-  if (sorted.length === 0) {
+  if (total === 0) {
     grid.innerHTML = `<div class="empty-state"><div class="big-icon">🔍</div><p>No cards match your filters</p></div>`;
     return;
   }
 
-  const visible = sorted.slice(0, 500);
-  if (sorted.length > 500) $('resultsInfo').textContent += ' (showing 500)';
+  const cap = 500;
+  if (total > cap) $('resultsInfo').textContent += ` (showing ${cap})`;
 
   grid.innerHTML = '';
-  visible.forEach(card => {
-    const inDeck = getDeckCount(card);
-    const maxCopies = getMaxCopies(card);
-    const deckFull = deck.reduce((s, e) => s + e.count, 0) >= 30;
-    const isMaxed = inDeck >= maxCopies || (deckFull && inDeck === 0);
 
-    const el = document.createElement('div');
-    el.className = 'card-item' + (isMaxed ? ' maxed' : '');
-    el.innerHTML = `
-      <div class="card-img-wrap">
-        <img src="${imgUrl(card.id)}" alt="${card.name}"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-             loading="lazy">
-        <div class="card-img-placeholder" style="display:none">
-          <span style="font-size:1.5rem">🃏</span>
-          <span>${card.name}</span>
-        </div>
-        ${inDeck > 0 ? `<div class="in-deck-badge">${inDeck}</div>` : ''}
-      </div>
-      <div class="card-footer">
-        <div class="card-name">${card.name}</div>
-      </div>
-    `;
+  if (groupByClass) {
+    // ── Grouped mode ──────────────────────────────────────────────────────
+    const classOrder = getClassOrder(filteredCards);
+    let rendered = 0;
 
-    el.addEventListener('click', () => addCardToDeck(card));
-    el.addEventListener('mouseenter', ev => showTooltip(card, ev));
-    el.addEventListener('mousemove', ev => positionTooltip(ev));
-    el.addEventListener('mouseleave', hideTooltip);
-    grid.appendChild(el);
-  });
+    for (const cls of classOrder) {
+      if (rendered >= cap) break;
+
+      const group = sortCards(filteredCards.filter(c => (c.cardClass || 'NEUTRAL') === cls));
+      if (group.length === 0) continue;
+
+      // Header spans full grid width
+      grid.appendChild(makeGroupHeader(cls, group.length));
+
+      const slice = group.slice(0, cap - rendered);
+      slice.forEach(card => grid.appendChild(makeCardEl(card)));
+      rendered += slice.length;
+    }
+  } else {
+    // ── Flat sorted mode ──────────────────────────────────────────────────
+    const sorted = sortCards(filteredCards).slice(0, cap);
+    sorted.forEach(card => grid.appendChild(makeCardEl(card)));
+  }
 }
 
 // ─── TOOLTIP ─────────────────────────────────────────────────────────────────
@@ -1720,7 +1886,7 @@ function positionTooltip(ev) {
   const tt = $('tooltip');
   const x = ev.clientX + 15, y = ev.clientY - 10;
   tt.style.left = Math.min(x, window.innerWidth - 220) + 'px';
-  tt.style.top = Math.min(y, window.innerHeight - 200) + 'px';
+  tt.style.top  = Math.min(y, window.innerHeight - 200) + 'px';
 }
 function hideTooltip() { $('tooltip').classList.remove('visible'); }
 
