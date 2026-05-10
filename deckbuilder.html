@@ -2219,13 +2219,43 @@ function renderManaCurve() {
 // ─── EXPORT ───────────────────────────────────────────────────────────────────
 function buildExportText() {
   const name = $('deckNameInput').value.trim() || 'My Deck';
-  const cls  = deckClass ? `# Class: ${CLASS_DISPLAY[deckClass] || deckClass}` : '';
-  const lines = [`### ${name}`, cls].filter(Boolean);
+  const lines = [];
   const sorted = [...deck].sort((a, b) =>
     (a.card.cost||0) - (b.card.cost||0) || (a.card.name||'').localeCompare(b.card.name||''));
-  sorted.forEach(({card, count}) => { lines.push(`${count}x ${card.name}`); });
+  sorted.forEach(({card, count}) => { lines.push(`${count} ${card.name} (HSCLASSIC)`); });
   const total = deck.reduce((s,e) => s+e.count, 0);
-  lines.push(`\n# ${total}/30 cards`);
+  lines.push(`\n//PASTE INTO PLAY SECTION`);
+  var heroPower;
+  switch (deckClass) {
+    case "WARRIOR":
+      heroPower = "Armor Up!";
+      break;
+    case "ROGUE":
+      heroPower = "Dagger Mastery";
+      break;
+    case "MAGE":
+      heroPower = "Fireblast";
+      break;
+    case "PRIEST":
+      heroPower = "Lesser Heal";
+      break;
+    case "WARLOCK":
+      heroPower = "Life Tap";
+      break;
+    case "PALADIN":
+      heroPower = "Reinforce";
+      break;
+    case "DRUID":
+      heroPower = "Shapeshift";
+      break;
+    case "HUNTER":
+      heroPower = "Steady Shot";
+      break;
+    case "SHAMAN":
+      heroPower = "Totemic Call";
+      break;
+  }
+  lines.push(heroPower + ` (hsclassic)`);
   return lines.join('\n');
 }
 
