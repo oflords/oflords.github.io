@@ -540,7 +540,7 @@
     position: relative;
   }
 
-    /* Class accent stripe on deck panel */
+  /* Class accent stripe on deck panel */
   .deck-class-stripe {
     height: 3px;
     flex-shrink: 0;
@@ -606,7 +606,7 @@
   .deck-count .num { color: var(--gold-light); }
   .deck-count .denom { color: var(--text-dim); font-size: 0.7em; }
 
-    /* Mana curve bars */
+  /* Mana curve bars */
   .mana-curve {
     display: flex;
     gap: 3px;
@@ -747,7 +747,7 @@
     text-align: center;
   }
 
-  /* ─── CLASS CHOOSER MODAL ──────────────────────── */
+  /* ─── MODALS (shared) ──────────────────────────── */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -804,7 +804,7 @@
 
   .modal-body { padding: 22px; }
 
-    /* Class selection grid */
+  /* Class selection grid */
   .class-choose-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -919,6 +919,203 @@
     font-style: italic;
   }
   .no-saved-decks .big-icon { font-size: 2.5rem; opacity: 0.3; margin-bottom: 10px; }
+
+  /* ─── DECK BROWSER MODAL ──────────────────────── */
+  #deckBrowserModal .modal { width: 620px; }
+
+  .deck-browser-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 0 22px;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .deck-tab {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 11px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+    position: relative;
+  }
+  .deck-tab:hover { color: var(--text); }
+  .deck-tab.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* Category badge on tab */
+  .deck-tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--gold-dim);
+    border-radius: 10px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    padding: 1px 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+    transition: all 0.2s;
+  }
+  .deck-tab.active .deck-tab-badge {
+    background: rgba(201,168,76,0.2);
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .deck-browser-body {
+    padding: 16px 22px 0;
+    max-height: 460px;
+    overflow-y: auto;
+  }
+  .deck-browser-body::-webkit-scrollbar { width: 4px; }
+  .deck-browser-body::-webkit-scrollbar-track { background: transparent; }
+  .deck-browser-body::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 2px; }
+
+  /* Class section within deck browser */
+  .db-class-section { margin-bottom: 6px; }
+
+  .db-class-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0 5px;
+    position: sticky;
+    top: 0;
+    background: var(--bg-panel);
+    z-index: 2;
+  }
+  .db-class-header:first-child { padding-top: 0; }
+
+  .db-class-pip {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .db-class-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .db-class-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Deck entry rows inside browser */
+  .db-deck-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 8px;
+    border-radius: 4px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    margin-bottom: 5px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .db-deck-row:hover { border-color: var(--border-hi); background: var(--bg-hover); }
+
+  .db-deck-accent {
+    width: 3px;
+    border-radius: 2px;
+    align-self: stretch;
+    flex-shrink: 0;
+    min-height: 28px;
+  }
+
+  .db-deck-info { flex: 1; min-width: 0; }
+
+  .db-deck-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .db-deck-sub {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 1px;
+  }
+
+  /* Mana curve mini preview */
+  .db-curve-mini {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    height: 20px;
+    width: 56px;
+    flex-shrink: 0;
+  }
+
+  .db-curve-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #4a7fd0 0%, #1a3060 100%);
+    border-radius: 1px 1px 0 0;
+    min-height: 1px;
+  }
+
+  .db-load-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 3px;
+    border: 1px solid var(--gold-dim);
+    background: linear-gradient(135deg, #b8922a 0%, #d4a840 50%, #b8922a 100%);
+    color: #1a1000;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .db-load-btn:hover {
+    box-shadow: 0 0 14px rgba(201,168,76,0.4);
+    transform: translateY(-1px);
+  }
+
+  /* States */
+  .db-loading, .db-error, .db-empty {
+    text-align: center;
+    padding: 40px 20px;
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  .db-loading { color: var(--text-dim); }
+  .db-error { color: #c0392b; line-height: 1.6; }
+  .db-empty { color: var(--text-dim); }
+  .db-empty .big-icon { font-size: 2rem; opacity: 0.3; margin-bottom: 10px; }
+
+  .db-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
 
   /* ─── TOOLTIP ─────────────────────────────────── */
   .tooltip {
@@ -1230,6 +1427,47 @@
   </aside>
 </div>
 
+<!-- ─── DECK BROWSER MODAL ─────────────── -->
+<div class="modal-overlay" id="deckBrowserModal">
+  <div class="modal" style="width:620px; max-height:90vh; display:flex; flex-direction:column;">
+    <div class="modal-header" style="flex-shrink:0;">
+      <div>
+        <div class="modal-title">🗂️ Deck Browser</div>
+        <div class="modal-subtitle">Pre-built decks — click Load to jump right in</div>
+      </div>
+      <button class="modal-close" id="deckBrowserClose">✕</button>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="deck-browser-tabs" id="deckBrowserTabs" style="flex-shrink:0;">
+      <button class="deck-tab active" data-tab="basic">
+        Basic
+        <span class="deck-tab-badge" id="badge-basic">9</span>
+      </button>
+      <button class="deck-tab" data-tab="classic">
+        Classic
+        <span class="deck-tab-badge" id="badge-classic">9</span>
+      </button>
+      <button class="deck-tab" data-tab="meta">
+        Meta
+        <span class="deck-tab-badge" id="badge-meta">23</span>
+      </button>
+    </div>
+
+    <!-- Scrollable deck list -->
+    <div class="deck-browser-body" id="deckBrowserBody">
+      <div class="db-loading">
+        <div class="db-spinner"></div>
+        Loading decks…
+      </div>
+    </div>
+
+    <div class="modal-footer" style="flex-shrink:0;">
+      <button class="btn btn-ghost" id="deckBrowserClose2">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- ─── CLASS CHOOSER MODAL ─────────────── -->
 <div class="modal-overlay" id="classChooserModal">
   <div class="modal">
@@ -1427,8 +1665,10 @@ function loadDeckFromSave(saved) {
   currentDeckId = saved.id;
 
   filters.classes.clear();
-  filters.classes.add(saved.class);
-  filters.classes.add('NEUTRAL');
+  if (saved.class) {
+    filters.classes.add(saved.class);
+    filters.classes.add('NEUTRAL');
+  }
 
   // Reflect in sidebar class buttons
   document.querySelectorAll('#classFilter .class-btn').forEach(btn => {
@@ -1503,7 +1743,7 @@ $('savedDecksModal').addEventListener('click', e => { if (e.target === $('savedD
 
 // ─── CONFIRM DIALOG ──────────────────────────────────────────────────────────
 let _confirmResolve = null;
-function confirm(msg) {
+function confirmDialog(msg) {
   return new Promise(resolve => {
     $('confirmMsg').innerHTML = msg;
     $('confirmModal').classList.add('open');
@@ -1516,7 +1756,7 @@ $('confirmCancel').addEventListener('click', () => { $('confirmModal').classList
 async function confirmDelete(id) {
   const d = getSavedDecks().find(x => x.id === id);
   if (!d) return;
-  const ok = await confirm(`Delete <strong>"${d.name}"</strong>?<br><span style="font-size:0.85rem;color:var(--text-dim);font-style:italic">This cannot be undone.</span>`);
+  const ok = await confirmDialog(`Delete <strong>"${d.name}"</strong>?<br><span style="font-size:0.85rem;color:var(--text-dim);font-style:italic">This cannot be undone.</span>`);
   if (ok) deleteSavedDeck(id);
 }
 
@@ -1617,8 +1857,8 @@ async function autoLoadCards() {
     const data = await res.json();
     parseAndLoadCards(data);
   } catch (err) {
-    console.warn('Could not auto-load cards.json:', err);
-    $('cardCountInfo').textContent = 'Place cards.json alongside this file, or load manually';
+    console.warn('Could not auto-load cards/classic.json:', err);
+    $('cardCountInfo').textContent = 'Place classic.json in a cards/ folder, or load manually';
   }
   $('loadingOverlay').classList.remove('show');
 }
@@ -1781,7 +2021,7 @@ function getMaxCopies(card) {
 }
 
 function makeCardEl(card) {
-  const inDeck   = getDeckCount(card);
+  const inDeck    = getDeckCount(card);
   const maxCopies = getMaxCopies(card);
   const deckFull  = deck.reduce((s, e) => s + e.count, 0) >= 30;
   const isMaxed   = inDeck >= maxCopies || (deckFull && inDeck === 0);
@@ -1894,7 +2134,7 @@ function hideTooltip() { $('tooltip').classList.remove('visible'); }
 function addCardToDeck(card) {
   const total = deck.reduce((s, e) => s + e.count, 0);
   const entry = deck.find(e => e.card.id === card.id);
-  const max = getMaxCopies(card);
+  const max   = getMaxCopies(card);
 
   if (entry && entry.count >= max) { notify(`Max ${max} cop${max===1?'y':'ies'} of ${card.name}`); return; }
   if (total >= 30) { notify('Deck is full (30 cards)'); return; }
@@ -1979,13 +2219,11 @@ function renderManaCurve() {
 // ─── EXPORT ───────────────────────────────────────────────────────────────────
 function buildExportText() {
   const name = $('deckNameInput').value.trim() || 'My Deck';
-  const cls = deckClass ? `# Class: ${CLASS_DISPLAY[deckClass] || deckClass}` : '';
+  const cls  = deckClass ? `# Class: ${CLASS_DISPLAY[deckClass] || deckClass}` : '';
   const lines = [`### ${name}`, cls].filter(Boolean);
   const sorted = [...deck].sort((a, b) =>
     (a.card.cost||0) - (b.card.cost||0) || (a.card.name||'').localeCompare(b.card.name||''));
-  sorted.forEach(({card, count}) => {
-    lines.push(`${count}x ${card.name}`);
-  });
+  sorted.forEach(({card, count}) => { lines.push(`${count}x ${card.name}`); });
   const total = deck.reduce((s,e) => s+e.count, 0);
   lines.push(`\n# ${total}/30 cards`);
   return lines.join('\n');
@@ -2017,6 +2255,133 @@ $('clearBtn').addEventListener('click', () => {
   renderCards();
   notify('Deck cleared');
 });
+
+// ─── DECK BROWSER ────────────────────────────────────────────────────────────
+const _browserCache = {};      // tab → deck array
+let _activeBrowserTab = 'basic';
+
+/**
+ * Build the mini mana-curve bar used inside each deck row.
+ * Returns an array of bar height percentages for mana 0–7+.
+ */
+function buildMiniCurve(deckEntry) {
+  const counts = [0,0,0,0,0,0,0,0]; // indices 0-6 = costs 0-6, index 7 = 7+
+  (deckEntry.cards || []).forEach(({ card, count }) => {
+    const c = Math.min(card.cost || 0, 7);
+    counts[c] += (count || 1);
+  });
+  const max = Math.max(...counts, 1);
+  return counts.map(n => Math.round((n / max) * 16));
+}
+
+function renderBrowserDecks(decks) {
+  const body = $('deckBrowserBody');
+  body.innerHTML = '';
+
+  if (!decks || decks.length === 0) {
+    body.innerHTML = `<div class="db-empty"><div class="big-icon">📭</div><p>No decks found in this category.</p></div>`;
+    return;
+  }
+
+  // Group by class in CLASS_ORDER
+  const grouped = {};
+  decks.forEach(d => {
+    const cls = d.class || 'NEUTRAL';
+    if (!grouped[cls]) grouped[cls] = [];
+    grouped[cls].push(d);
+  });
+
+  CLASS_ORDER.filter(cls => grouped[cls]).forEach(cls => {
+    const color  = CLASS_COLORS[cls] || '#8a7550';
+    const label  = CLASS_DISPLAY[cls] || cls;
+    const icon   = CLASS_ICONS[cls]  || '';
+
+    // Class header
+    const hdr = document.createElement('div');
+    hdr.className = 'db-class-header';
+    hdr.innerHTML = `
+      <div class="db-class-pip" style="background:${color}"></div>
+      <div class="db-class-name" style="color:${color}">${icon} ${label}</div>
+      <div class="db-class-line" style="background:linear-gradient(90deg,${color}44 0%,transparent 100%)"></div>
+    `;
+    body.appendChild(hdr);
+
+    // Deck rows for this class
+    grouped[cls].forEach(d => {
+      const total    = (d.cards || []).reduce((s, e) => s + (e.count || 1), 0);
+      const heights  = buildMiniCurve(d);
+
+      const row = document.createElement('div');
+      row.className = 'db-deck-row';
+      row.innerHTML = `
+        <div class="db-deck-accent" style="background:${color}"></div>
+        <div class="db-deck-info">
+          <div class="db-deck-name">${d.name || 'Unnamed Deck'}</div>
+          <div class="db-deck-sub">${total}/30 cards</div>
+        </div>
+        <div class="db-curve-mini">
+          ${heights.map(h => `<div class="db-curve-bar" style="height:${h}px"></div>`).join('')}
+        </div>
+        <button class="db-load-btn">Load</button>
+      `;
+      row.querySelector('.db-load-btn').addEventListener('click', () => {
+        // Load via the standard mechanism, then null out ID so it saves as new
+        loadDeckFromSave(d);
+        currentDeckId = null;
+        $('deckBrowserModal').classList.remove('open');
+      });
+      body.appendChild(row);
+    });
+  });
+}
+
+async function loadBrowserTab(tab) {
+  _activeBrowserTab = tab;
+
+  // Use cache if available
+  if (_browserCache[tab]) {
+    renderBrowserDecks(_browserCache[tab]);
+    return;
+  }
+
+  const body = $('deckBrowserBody');
+  body.innerHTML = `<div class="db-loading"><div class="db-spinner"></div>Loading ${tab} decks…</div>`;
+
+  try {
+    const res = await fetch(`decks/${tab}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    _browserCache[tab] = data;
+
+    // Update badge with actual count
+    const badge = $(`badge-${tab}`);
+    if (badge) badge.textContent = data.length;
+
+    renderBrowserDecks(data);
+  } catch (err) {
+    body.innerHTML = `
+      <div class="db-error">
+        ⚠️ Could not load <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:2px;">decks/${tab}.json</code><br>
+      </div>`;
+  }
+}
+
+// Tab switching
+$('deckBrowserTabs').querySelectorAll('.deck-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    $('deckBrowserTabs').querySelectorAll('.deck-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    loadBrowserTab(tab.dataset.tab);
+  });
+});
+
+$('defaultDecksBtn').addEventListener('click', () => {
+  $('deckBrowserModal').classList.add('open');
+  loadBrowserTab(_activeBrowserTab);
+});
+$('deckBrowserClose').addEventListener('click', () => $('deckBrowserModal').classList.remove('open'));
+$('deckBrowserClose2').addEventListener('click', () => $('deckBrowserModal').classList.remove('open'));
+$('deckBrowserModal').addEventListener('click', e => { if (e.target === $('deckBrowserModal')) $('deckBrowserModal').classList.remove('open'); });
 
 // ─── INIT ──────────────────────────────────────────────────────────────────────
 applyDeckClassToUI();

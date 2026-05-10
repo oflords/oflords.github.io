@@ -1,0 +1,2099 @@
+[
+    {
+        "id": "deck_1778391194074",
+        "name": "Classic Warrior",
+        "class": "WARRIOR",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_607",
+                    "name": "Inner Rage",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "WARRIOR",
+                    "text": "Deal $1 damage to a minion and give it +2 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_108",
+                    "name": "Execute",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "text": "Destroy a damaged enemy minion."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_400",
+                    "name": "Whirlwind",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "text": "Deal $1 damage to ALL minions."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_393",
+                    "name": "Amani Berserker",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Enrage:</b> +3 Attack"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_392",
+                    "name": "Battle Rage",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "WARRIOR",
+                    "text": "Draw a card for each damaged friendly character."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_603",
+                    "name": "Cruel Taskmaster",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "WARRIOR",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Deal 1 damage to a minion and give it +2 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_106",
+                    "name": "Fiery War Axe",
+                    "cost": 2,
+                    "type": "WEAPON",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "attack": 3,
+                    "health": 2,
+                    "durability": 0
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_606",
+                    "name": "Shield Block",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "text": "Gain 5 Armor.\nDraw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_604",
+                    "name": "Frothing Berserker",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "WARRIOR",
+                    "attack": 2,
+                    "health": 4,
+                    "text": "Whenever a minion takes damage, gain +1 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_412",
+                    "name": "Raging Worgen",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 3,
+                    "text": "<b>Enrage:</b> <b>Windfury</b> and +1 Attack"
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_019",
+                    "name": "Shattered Sun Cleric",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Give a friendly minion +1/+1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_147",
+                    "name": "Gnomish Inventor",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 4,
+                    "text": "<b>Battlecry:</b> Draw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_011",
+                    "name": "Kor'kron Elite",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "attack": 4,
+                    "health": 3,
+                    "text": "<b>Charge</b>"
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_414",
+                    "name": "Grommash Hellscream",
+                    "cost": 8,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "WARRIOR",
+                    "attack": 4,
+                    "health": 9,
+                    "text": "<b>Charge</b>\n<b>Enrage:</b> +6 Attack"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_112",
+                    "name": "Arcanite Reaper",
+                    "cost": 5,
+                    "type": "WEAPON",
+                    "rarity": "FREE",
+                    "cardClass": "WARRIOR",
+                    "attack": 5,
+                    "health": 2,
+                    "durability": 0
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_399",
+                    "name": "Gurubashi Berserker",
+                    "cost": 5,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 7,
+                    "text": "Whenever this minion takes damage, gain +3 Attack."
+                }
+            }
+        ],
+        "created": 1778391194074
+    },
+    {
+        "id": "deck_1778391127647",
+        "name": "Classic Warlock",
+        "class": "WARLOCK",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_188",
+                    "name": "Abusive Sergeant",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Give a minion +2 Attack this turn."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_189",
+                    "name": "Elven Archer",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 1,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Deal 1 damage."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_319",
+                    "name": "Flame Imp",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "WARLOCK",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Deal 3 damage to your hero."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_302",
+                    "name": "Mortal Coil",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "WARLOCK",
+                    "text": "Deal $1 damage to a minion. If that kills it, draw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_065",
+                    "name": "Voidwalker",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "WARLOCK",
+                    "attack": 1,
+                    "health": 3,
+                    "text": "<b>Taunt</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_066",
+                    "name": "Acidic Swamp Ooze",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Destroy your opponent's weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_019",
+                    "name": "Knife Juggler",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "[x]After you summon a\nminion, deal 1 damage\nto a random enemy."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_506",
+                    "name": "Murloc Tidehunter",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Summon a 1/1 Murloc Scout."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_556",
+                    "name": "Harvest Golem",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Deathrattle:</b> Summon a 2/1 Damaged Golem."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_196",
+                    "name": "Razorfen Hunter",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Summon a 1/1 Boar."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_019",
+                    "name": "Shattered Sun Cleric",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Give a friendly minion +1/+1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_046",
+                    "name": "Dark Iron Dwarf",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 4,
+                    "text": "<b>Battlecry:</b> Give a minion +2 Attack this turn."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_093",
+                    "name": "Defender of Argus",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Give adjacent minions +1/+1 and <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_226",
+                    "name": "Frostwolf Warlord",
+                    "cost": 5,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 4,
+                    "text": "<b>Battlecry:</b> Gain +1/+1 for each other friendly minion on the battlefield."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_323",
+                    "name": "Lord Jaraxxus",
+                    "cost": 9,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "WARLOCK",
+                    "attack": 3,
+                    "health": 15,
+                    "text": "<b>Battlecry:</b> Destroy your hero and replace it with Lord Jaraxxus."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_308",
+                    "name": "Soulfire",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "WARLOCK",
+                    "text": "[x]Deal $4 damage.\nDiscard a random card."
+                }
+            }
+        ],
+        "created": 1778391127647
+    },
+    {
+        "id": "deck_1778391019548",
+        "name": "Classic Shaman",
+        "class": "SHAMAN",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_008",
+                    "name": "Argent Squire",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 1,
+                    "health": 1,
+                    "text": "<b>Divine Shield</b>"
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_245",
+                    "name": "Earth Shock",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "SHAMAN",
+                    "text": "<b>Silence</b> a minion, then deal $1 damage to it."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_238",
+                    "name": "Lightning Bolt",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "SHAMAN",
+                    "text": "Deal $3 damage. <b>Overload:</b> (1)"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_066",
+                    "name": "Acidic Swamp Ooze",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Destroy your opponent's weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_565",
+                    "name": "Flametongue Totem",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "SHAMAN",
+                    "attack": 0,
+                    "health": 3,
+                    "text": "Adjacent minions have +2 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_142",
+                    "name": "Kobold Geomancer",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Spell Damage +1</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_506",
+                    "name": "Murloc Tidehunter",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Summon a 1/1 Murloc Scout."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_045",
+                    "name": "Rockbiter Weapon",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "SHAMAN",
+                    "text": "Give a friendly character +3 Attack this turn."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_247",
+                    "name": "Stormforged Axe",
+                    "cost": 2,
+                    "type": "WEAPON",
+                    "rarity": "COMMON",
+                    "cardClass": "SHAMAN",
+                    "attack": 2,
+                    "health": 3,
+                    "durability": 0,
+                    "text": "<b>Overload:</b> (1)"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_246",
+                    "name": "Hex",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "SHAMAN",
+                    "text": "Transform a minion into a 0/1 Frog with <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_259",
+                    "name": "Lightning Storm",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "RARE",
+                    "cardClass": "SHAMAN",
+                    "text": "Deal $2-$3 damage to all enemy minions. <b>Overload:</b> (2)"
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_575",
+                    "name": "Mana Tide Totem",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "SHAMAN",
+                    "attack": 0,
+                    "health": 3,
+                    "text": "At the end of your turn, draw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_019",
+                    "name": "Shattered Sun Cleric",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Give a friendly minion +1/+1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_182",
+                    "name": "Chillwind Yeti",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 5
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_046",
+                    "name": "Bloodlust",
+                    "cost": 5,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "SHAMAN",
+                    "text": "Give your minions +3 Attack this turn."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_567",
+                    "name": "Doomhammer",
+                    "cost": 5,
+                    "type": "WEAPON",
+                    "rarity": "EPIC",
+                    "cardClass": "SHAMAN",
+                    "attack": 2,
+                    "health": 8,
+                    "durability": 0,
+                    "text": "<b>Windfury, Overload:</b> (2)"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_042",
+                    "name": "Fire Elemental",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "SHAMAN",
+                    "attack": 6,
+                    "health": 5,
+                    "text": "<b>Battlecry:</b> Deal 3 damage."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_NEW1_010",
+                    "name": "Al'Akir the Windlord",
+                    "cost": 8,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "SHAMAN",
+                    "attack": 3,
+                    "health": 5,
+                    "text": "<b>Charge, Divine Shield, Taunt, Windfury</b>"
+                }
+            }
+        ],
+        "created": 1778391019548
+    },
+    {
+        "id": "deck_1778390937160",
+        "name": "Classic Rogue",
+        "class": "ROGUE",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_072",
+                    "name": "Backstab",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "ROGUE",
+                    "text": "Deal $2 damage to an undamaged minion."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_074",
+                    "name": "Deadly Poison",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "ROGUE",
+                    "text": "Give your weapon +2 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_188",
+                    "name": "Abusive Sergeant",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Give a minion +2 Attack this turn."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_029",
+                    "name": "Leper Gnome",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Deathrattle:</b> Deal 2 damage to the enemy hero."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_146",
+                    "name": "Southsea Deckhand",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "Has <b>Charge</b> while you have a weapon equipped."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_066",
+                    "name": "Acidic Swamp Ooze",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Destroy your opponent's weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_018",
+                    "name": "Bloodsail Raider",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Gain Attack equal to the Attack\nof your weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_173",
+                    "name": "Bluegill Warrior",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Charge</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_124",
+                    "name": "Eviscerate",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "ROGUE",
+                    "text": "Deal $2 damage. <b>Combo:</b> Deal $4 damage instead."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_019",
+                    "name": "Knife Juggler",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "[x]After you summon a\nminion, deal 1 damage\nto a random enemy."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_581",
+                    "name": "Sap",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "ROGUE",
+                    "text": "Return an enemy minion to your opponent's hand."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_613",
+                    "name": "Edwin VanCleef",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "ROGUE",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Combo:</b> Gain +2/+2 for each card played earlier this turn."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_124",
+                    "name": "Wolfrider",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 1,
+                    "text": "<b>Charge</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_046",
+                    "name": "Dark Iron Dwarf",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 4,
+                    "text": "<b>Battlecry:</b> Give a minion +2 Attack this turn."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_NEW1_022",
+                    "name": "Dread Corsair",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 3,
+                    "text": "<b>Taunt</b>\nCosts (1) less per Attack of your weapon."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_077",
+                    "name": "Sprint",
+                    "cost": 7,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "ROGUE",
+                    "text": "Draw 4 cards."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_080",
+                    "name": "Assassin's Blade",
+                    "cost": 5,
+                    "type": "WEAPON",
+                    "rarity": "FREE",
+                    "cardClass": "ROGUE",
+                    "attack": 3,
+                    "health": 4,
+                    "durability": 0
+                }
+            }
+        ],
+        "created": 1778390937160
+    },
+    {
+        "id": "deck_1778390797187",
+        "name": "Classic Priest",
+        "class": "PRIEST",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_591",
+                    "name": "Auchenai Soulpriest",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "PRIEST",
+                    "attack": 3,
+                    "health": 5,
+                    "text": "Your cards and powers that restore Health now deal damage instead."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_091",
+                    "name": "Cabal Shadow Priest",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "EPIC",
+                    "cardClass": "PRIEST",
+                    "attack": 4,
+                    "health": 5,
+                    "text": "<b>Battlecry:</b> Take control of an enemy minion that has 2 or less Attack."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_341",
+                    "name": "Lightwell",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "PRIEST",
+                    "attack": 0,
+                    "health": 5,
+                    "text": "At the start of your turn, restore #3 Health to a damaged friendly character."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_235",
+                    "name": "Northshire Cleric",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "PRIEST",
+                    "attack": 1,
+                    "health": 3,
+                    "text": "Whenever a minion is healed, draw a card."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_350",
+                    "name": "Prophet Velen",
+                    "cost": 7,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "PRIEST",
+                    "attack": 7,
+                    "health": 7,
+                    "text": "Double the damage and healing of your spells and Hero Power."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_623",
+                    "name": "Temple Enforcer",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "PRIEST",
+                    "attack": 6,
+                    "health": 6,
+                    "text": "<b>Battlecry:</b> Give a friendly minion +3 Health."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_182",
+                    "name": "Chillwind Yeti",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 5
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_117",
+                    "name": "Earthen Ring Farseer",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Restore #3 Health."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_181",
+                    "name": "Injured Blademaster",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 7,
+                    "text": "<b>Battlecry:</b> Deal 4 damage to HIMSELF."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_179",
+                    "name": "Sen'jin Shieldmasta",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 5,
+                    "text": "<b>Taunt</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_020",
+                    "name": "Wild Pyromancer",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "After you cast a spell, deal 1 damage to ALL minions."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_621",
+                    "name": "Circle of Healing",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "PRIEST",
+                    "text": "Restore #4 Health to ALL minions."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS1_112",
+                    "name": "Holy Nova",
+                    "cost": 5,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PRIEST",
+                    "text": "Deal $2 damage to all enemies. Restore #2 Health to all friendly characters."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS1_113",
+                    "name": "Mind Control",
+                    "cost": 10,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PRIEST",
+                    "text": "Take control of an enemy minion."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_004",
+                    "name": "Power Word: Shield",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PRIEST",
+                    "text": "Give a minion +2 Health.\nDraw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_622",
+                    "name": "Shadow Word: Death",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PRIEST",
+                    "text": "Destroy a minion with 5 or more Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_339",
+                    "name": "Thoughtsteal",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "PRIEST",
+                    "text": "Copy 2 cards in your opponent's deck and add them to your hand."
+                }
+            }
+        ],
+        "created": 1778390797187
+    },
+    {
+        "id": "deck_1778390365911",
+        "name": "Classic Paladin",
+        "class": "PALADIN",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_066",
+                    "name": "Acidic Swamp Ooze",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Destroy your opponent's weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_362",
+                    "name": "Argent Protector",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "PALADIN",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Give a friendly minion <b>Divine Shield</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_619",
+                    "name": "Equality",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "RARE",
+                    "cardClass": "PALADIN",
+                    "text": "Change the Health of ALL minions to 1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_120",
+                    "name": "River Crocolisk",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_382",
+                    "name": "Aldor Peacekeeper",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "PALADIN",
+                    "attack": 3,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Change an enemy minion's Attack to 1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_093",
+                    "name": "Consecration",
+                    "cost": 4,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PALADIN",
+                    "text": "Deal $2 damage to all enemies."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_556",
+                    "name": "Harvest Golem",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Deathrattle:</b> Summon a 2/1 Damaged Golem."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_019",
+                    "name": "Shattered Sun Cleric",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Give a friendly minion +1/+1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_092",
+                    "name": "Blessing of Kings",
+                    "cost": 4,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "PALADIN",
+                    "text": "Give a minion +4/+4. <i>(+4 Attack/+4 Health)</i>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_179",
+                    "name": "Sen'jin Shieldmasta",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 5,
+                    "text": "<b>Taunt</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_097",
+                    "name": "Truesilver Champion",
+                    "cost": 4,
+                    "type": "WEAPON",
+                    "rarity": "FREE",
+                    "cardClass": "PALADIN",
+                    "attack": 4,
+                    "health": 2,
+                    "durability": 0,
+                    "text": "Whenever your hero attacks, restore #2 Health to it."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_200",
+                    "name": "Boulderfist Ogre",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 6,
+                    "health": 7
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_354",
+                    "name": "Lay on Hands",
+                    "cost": 8,
+                    "type": "SPELL",
+                    "rarity": "EPIC",
+                    "cardClass": "PALADIN",
+                    "text": "Restore #8 Health. Draw 3 cards."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_088",
+                    "name": "Guardian of Kings",
+                    "cost": 7,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "PALADIN",
+                    "attack": 5,
+                    "health": 6,
+                    "text": "<b>Battlecry:</b> Restore #6 Health to your hero."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_383",
+                    "name": "Tirion Fordring",
+                    "cost": 8,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "PALADIN",
+                    "attack": 6,
+                    "health": 6,
+                    "text": "<b><b>Divine Shield</b>,</b> <b>Taunt</b> <b>Deathrattle:</b> Equip a 5/3 Ashbringer."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_222",
+                    "name": "Stormwind Champion",
+                    "cost": 7,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 6,
+                    "health": 6,
+                    "text": "Your other minions have +1/+1."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_151",
+                    "name": "Silver Hand Knight",
+                    "cost": 5,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 4,
+                    "text": "<b>Battlecry:</b> Summon a 2/2 Squire."
+                }
+            }
+        ],
+        "created": 1778390365911
+    },
+    {
+        "id": "deck_1778390257757",
+        "name": "Classic Mage",
+        "class": "MAGE",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_277",
+                    "name": "Arcane Missiles",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Deal $3 damage randomly split among all enemy characters."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_012",
+                    "name": "Mana Wyrm",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "MAGE",
+                    "attack": 1,
+                    "health": 3,
+                    "text": "Whenever you cast a spell, gain +1 Attack."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_027",
+                    "name": "Mirror Image",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Summon two 0/2 minions with <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_066",
+                    "name": "Acidic Swamp Ooze",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "<b>Battlecry:</b> Destroy your opponent's weapon."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_024",
+                    "name": "Frostbolt",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Deal $3 damage to a character and <b>Freeze</b> it."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_142",
+                    "name": "Kobold Geomancer",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Spell Damage +1</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_608",
+                    "name": "Sorcerer's Apprentice",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "MAGE",
+                    "attack": 3,
+                    "health": 2,
+                    "text": "Your spells cost (1) less."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_023",
+                    "name": "Arcane Intellect",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Draw 2 cards."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_294",
+                    "name": "Mirror Entity",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "MAGE",
+                    "text": "[x]<b>Secret:</b> When\nyour opponent plays a\nminion, summon a copy\nof it."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_029",
+                    "name": "Fireball",
+                    "cost": 4,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Deal $6 damage."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_022",
+                    "name": "Polymorph",
+                    "cost": 4,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Transform a minion\ninto a 1/1 Sheep."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_033",
+                    "name": "Water Elemental",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "attack": 3,
+                    "health": 6,
+                    "text": "<b>Freeze</b> any character damaged by this minion."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_559",
+                    "name": "Archmage Antonidas",
+                    "cost": 7,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "MAGE",
+                    "attack": 5,
+                    "health": 7,
+                    "text": "Whenever you cast a spell, add a 'Fireball' spell to your hand."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_032",
+                    "name": "Flamestrike",
+                    "cost": 7,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "MAGE",
+                    "text": "Deal $4 damage to all enemy minions."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_279",
+                    "name": "Pyroblast",
+                    "cost": 10,
+                    "type": "SPELL",
+                    "rarity": "EPIC",
+                    "cardClass": "MAGE",
+                    "text": "Deal $10 damage."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_155",
+                    "name": "Archmage",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 7,
+                    "text": "<b>Spell Damage +1</b>"
+                }
+            }
+        ],
+        "created": 1778390257757
+    },
+    {
+        "id": "deck_1778390178479",
+        "name": "Classic Druid",
+        "class": "DRUID",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_169",
+                    "name": "Innervate",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "DRUID",
+                    "text": "Gain 2 Mana Crystals this turn only."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_005",
+                    "name": "Claw",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "DRUID",
+                    "text": "Give your hero +2 Attack this turn. Gain 2 Armor."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_142",
+                    "name": "Kobold Geomancer",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "<b>Spell Damage +1</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_015",
+                    "name": "Novice Engineer",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 1,
+                    "health": 1,
+                    "text": "<b>Battlecry:</b> Draw a card."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_013",
+                    "name": "Wild Growth",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "DRUID",
+                    "text": "Gain an empty Mana Crystal."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_154",
+                    "name": "Wrath",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "DRUID",
+                    "text": "<b>Choose One -</b>\nDeal $3 damage to a minion; or $1 damage\nand draw a card."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_117",
+                    "name": "Earthen Ring Farseer",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Restore #3 Health."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_556",
+                    "name": "Harvest Golem",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 3,
+                    "text": "<b>Deathrattle:</b> Summon a 2/1 Damaged Golem."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_012",
+                    "name": "Swipe",
+                    "cost": 4,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "DRUID",
+                    "text": "Deal $4 damage to an enemy and $1 damage to all other enemies."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_182",
+                    "name": "Chillwind Yeti",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 5
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_166",
+                    "name": "Keeper of the Grove",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "DRUID",
+                    "attack": 2,
+                    "health": 4,
+                    "text": "<b>Choose One -</b> Deal 2 damage; or <b>Silence</b> a minion."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_CS2_179",
+                    "name": "Sen'jin Shieldmasta",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 5,
+                    "text": "<b>Taunt</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_200",
+                    "name": "Boulderfist Ogre",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 6,
+                    "health": 7
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_165",
+                    "name": "Druid of the Claw",
+                    "cost": 5,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "DRUID",
+                    "attack": 4,
+                    "health": 4,
+                    "text": "<b>Choose One -</b> <b>Charge</b>; or +2 Health and <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_178",
+                    "name": "Ancient of War",
+                    "cost": 7,
+                    "type": "MINION",
+                    "rarity": "EPIC",
+                    "cardClass": "DRUID",
+                    "attack": 5,
+                    "health": 5,
+                    "text": "<b>Choose One -</b>\n+5 Attack; or +5 Health and <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_232",
+                    "name": "Ironbark Protector",
+                    "cost": 8,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "DRUID",
+                    "attack": 8,
+                    "health": 8,
+                    "text": "<b>Taunt</b>"
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_573",
+                    "name": "Cenarius",
+                    "cost": 9,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "DRUID",
+                    "attack": 5,
+                    "health": 8,
+                    "text": "<b>Choose One -</b> Give your other minions +2/+2; or Summon two 2/2 Treants with <b>Taunt</b>."
+                }
+            }
+        ],
+        "created": 1778390178479
+    },
+    {
+        "id": "deck_1778389633711",
+        "name": "Classic Hunter",
+        "class": "HUNTER",
+        "cards": [
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_DS1_185",
+                    "name": "Arcane Shot",
+                    "cost": 1,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "text": "Deal $2 damage."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_029",
+                    "name": "Leper Gnome",
+                    "cost": 1,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 1,
+                    "text": "<b>Deathrattle:</b> Deal 2 damage to the enemy hero."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_172",
+                    "name": "Bloodfen Raptor",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "NEUTRAL",
+                    "attack": 3,
+                    "health": 2
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_162",
+                    "name": "Dire Wolf Alpha",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "Adjacent minions have +1 Attack."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_610",
+                    "name": "Explosive Trap",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "HUNTER",
+                    "text": "<b>Secret:</b> When your hero is attacked, deal $2 damage to all enemies."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_611",
+                    "name": "Freezing Trap",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "HUNTER",
+                    "text": "<b>Secret:</b> When an enemy minion attacks, return it to its owner's hand. It costs (2) more."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_531",
+                    "name": "Scavenging Hyena",
+                    "cost": 2,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "HUNTER",
+                    "attack": 2,
+                    "health": 2,
+                    "text": "Whenever a friendly Beast dies, gain +2/+1."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_554",
+                    "name": "Snake Trap",
+                    "cost": 2,
+                    "type": "SPELL",
+                    "rarity": "EPIC",
+                    "cardClass": "HUNTER",
+                    "text": "<b>Secret:</b> When one of your minions is attacked, summon three 1/1 Snakes."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_NEW1_031",
+                    "name": "Animal Companion",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "text": "Summon a random Beast Companion."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_536",
+                    "name": "Eaglehorn Bow",
+                    "cost": 3,
+                    "type": "WEAPON",
+                    "rarity": "RARE",
+                    "cardClass": "HUNTER",
+                    "attack": 3,
+                    "health": 2,
+                    "durability": 0,
+                    "text": "Whenever a <b>Secret</b> is revealed, gain +1 Durability."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_539",
+                    "name": "Kill Command",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "text": "Deal $3 damage. If you control a Beast, deal\n$5 damage instead."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_017",
+                    "name": "Jungle Panther",
+                    "cost": 3,
+                    "type": "MINION",
+                    "rarity": "COMMON",
+                    "cardClass": "NEUTRAL",
+                    "attack": 4,
+                    "health": 2,
+                    "text": "<b>Stealth</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_538",
+                    "name": "Unleash the Hounds",
+                    "cost": 3,
+                    "type": "SPELL",
+                    "rarity": "COMMON",
+                    "cardClass": "HUNTER",
+                    "text": "For each enemy minion, summon a 1/1 Hound with <b>Charge</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_DS1_070",
+                    "name": "Houndmaster",
+                    "cost": 4,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "attack": 4,
+                    "health": 3,
+                    "text": "<b>Battlecry:</b> Give a friendly Beast +2/+2 and <b>Taunt</b>."
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_EX1_534",
+                    "name": "Savannah Highmane",
+                    "cost": 6,
+                    "type": "MINION",
+                    "rarity": "RARE",
+                    "cardClass": "HUNTER",
+                    "attack": 6,
+                    "health": 5,
+                    "text": "<b>Deathrattle:</b> Summon two 2/2 Hyenas."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_DS1_178",
+                    "name": "Tundra Rhino",
+                    "cost": 5,
+                    "type": "MINION",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "attack": 2,
+                    "health": 5,
+                    "text": "Your Beasts have <b>Charge</b>."
+                }
+            },
+            {
+                "count": 1,
+                "card": {
+                    "id": "VAN_EX1_543",
+                    "name": "King Krush",
+                    "cost": 9,
+                    "type": "MINION",
+                    "rarity": "LEGENDARY",
+                    "cardClass": "HUNTER",
+                    "attack": 8,
+                    "health": 8,
+                    "text": "<b>Charge</b>"
+                }
+            },
+            {
+                "count": 2,
+                "card": {
+                    "id": "VAN_CS2_084",
+                    "name": "Hunter's Mark",
+                    "cost": 0,
+                    "type": "SPELL",
+                    "rarity": "FREE",
+                    "cardClass": "HUNTER",
+                    "text": "Change a minion's Health to 1."
+                }
+            }
+        ],
+        "created": 1778389633711
+    }
+]
